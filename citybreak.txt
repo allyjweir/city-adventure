@@ -1,0 +1,24 @@
+City Break App
+----
+Gamification of the exploration of a city over a specific short period of time (for this initial version 72 hours?)
+
+Users can gain points by answering questions about different parts of the city, museums, places, history and landmarks. They have to be in these places (based on rough GPS) to be able to answer the questions. This encourages visitors to Glasgow to go and find these landmarks to gain a higher number of points which they can compare with other visitors on a leaderboard. 
+
+For the initial version, this will only cover Glasgow. Information and 'adventures' for other cities in later version will be crowdsourced by local experts and historians.
+
+Users will be able to gain points through:
+	- Answering geo-questions
+	- Taking selfies with specific landmarks
+	- Scanning public transport tickets
+	- Answering questions about the transport type's history in the city
+	- Checking into places on Foursquare
+	- Answering polls about stuff... (Used to collect data for the maintainers)
+	- Visiting all locations in an 'adventure' or on a map. (Also points for reaching 25%,50%,75% of all locations)
+	
+Users can gain achievements for completing sub-sets of the tasks in their adventure.
+
+'Adventures' are different map sets with points that are related to specific topics or themes that users would be more interested in learning about. For example in Berlin, this could be exploring WW2 history or learning about the fall of the Berlin wall and reunification of Germany. Having these separate 'adventures' encourages users to explore based on their interests. If someone were to fully complete an adventure they get a badge. This is both virtual and they can pay to get a physical one sent to their home. This physical artifact would be a reminder of the fun they had in the 
+
+Meta adventures covering multiple cities. For example seeing Da Vinci's top 10 famous artworks. Not all in one city but something that the user could try to complete in the long run. Not only encourage them to learn/see more but also help them maybe choose where next to go on holiday/visit.
+
+The app encourages constant interaction through constant rewards and also holding lots of information about the city such as public transport timetables and recommendations from Foursquare on restaurants, theatres etc.
