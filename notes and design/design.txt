@@ -1,0 +1,13 @@
+Design Notes
+----
+- This app has been designed to fit in with Google's Material Design stylings fit for the Android platform.
+- Designed using Sketch on OSX.
+
+Colour Palette
+----
+These should be used throughout the application. I used Adobe Color CC to get this Analogous range. It listed the Orange as the primary but I would tend to using the Purple or Blue as the key colour.
+34FF25 - Green
+E8C52E - Yellow (Gold-like?)
+FF6635 - Orange
+B925E8 - Purple
+288DFF - Blue
