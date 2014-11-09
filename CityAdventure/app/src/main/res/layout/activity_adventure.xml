@@ -6,7 +6,29 @@
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/map"
+            android:textColor="@android:color/black"
+            android:background="@color/blue"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:text="Cant Test Maps on Virtual Devices"
+            android:gravity="center"/>
+        <!--Cant test maps on virtual devices-->
+        <!--<fragment-->
+            <!--android:id="@+id/map"-->
+            <!--android:name="com.google.android.gms.maps.MapFragment"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"/>-->
+        <ListView
+            android:id="@+id/directions_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="300dp"/>
+
+        </FrameLayout>
     <!-- The navigation drawer -->
 
     <ListView
