@@ -31,28 +31,29 @@ public class AdventureActivity extends Activity {
 
         getActionBar().setIcon(//hides the action bar icon
                 new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+        getActionBar().setTitle("City Adventure");
 
         //todo the typeface cant be created for some reason, i iwll look in to that soon
-//        Typeface tf = Typeface.createFromAsset(getAssets(),"fonts/Pacifico.ttf");//gets the font ttf file from assets
+        Typeface tf = Typeface.createFromAsset(getAssets(),"fonts/Pacifico.ttf");//gets the font ttf file from assets
 //        TextView title = (TextView) getActionBar().getCustomView().findViewById(R.id.action_bar_title);
 //        title.setTypeface(tf);//sets the font for these views
 
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-                R.drawable.ic_launcher, R.string.drawer_open, R.string.drawer_close) {
+                R.drawable.common_signin_btn_icon_normal_dark, R.string.drawer_open, R.string.drawer_close) {
 
             /** Called when a drawer has settled in a completely closed state. */
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
-                getActionBar().setTitle("Open");
+//                getActionBar().setTitle("Open");
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 
             /** Called when a drawer has settled in a completely open state. */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                getActionBar().setTitle("Close");
+//                getActionBar().setTitle("Close");
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
