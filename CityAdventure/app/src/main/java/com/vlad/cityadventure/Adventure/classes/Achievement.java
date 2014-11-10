@@ -5,4 +5,14 @@ package com.vlad.cityadventure.Adventure.classes;
  * Has a point value and an image as well
  */
 public class Achievement {
+    public String name;
+    public String description;
+    public boolean badge;
+    public boolean challenge;
+    public ArrayList<> requirements;  // Left general to allow for mix of questions and tasks?
+    public int points;  //point value of completing the achievement
+    // How do we attach an image to this class?
+
+
+    // Haven't auto generated the code since the image field hasn't been finalised.
 }
