@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.vlad.cityadventure.Adventure.AdventureActivity;
 
@@ -15,7 +16,12 @@ public class StartupActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_startup);
-        startActivity(new Intent(this, AdventureActivity.class));
+        findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StartupActivity.this, AdventureActivity.class));
+            }
+        });
     }
 
 

@@ -9,7 +9,7 @@ public class Achievement {
     public String description;
     public boolean badge;
     public boolean challenge;
-    public ArrayList<> requirements;  // Left general to allow for mix of questions and tasks?
+    public String[] requirements;  // Left general to allow for mix of questions and tasks?
     public int points;  //point value of completing the achievement
     // How do we attach an image to this class?
 

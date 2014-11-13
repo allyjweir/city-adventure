@@ -32,7 +32,7 @@ public class Question {
         this.quiz = quiz;
         this.poll = poll;
         this.landmark = landmark;
-        this.points = points
+        this.points = points;
     }
 
     // Copy Constructor
@@ -42,7 +42,7 @@ public class Question {
         this.quiz = q.quiz;
         this.poll = q.poll;
         this.landmark = q.landmark;
-        this.points = q.points
+        this.points = q.points;
 
     }
 

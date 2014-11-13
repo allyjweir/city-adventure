@@ -1,6 +1,7 @@
 package com.vlad.cityadventure.Adventure.classes;
 
 import java.lang.String;
+import java.util.ArrayList;
 
 /**
  * This will containt all of the details, like tasks, pictures, how many people have visited it
