@@ -11,9 +11,9 @@
         <TextView
             android:id="@+id/map"
             android:textColor="@android:color/black"
-            android:background="@color/blue"
+            android:background="@color/darkblue"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="200dp"
             android:text="Cant Test Maps on Virtual Devices"
             android:gravity="center"/>
         <!--Cant test maps on virtual devices-->
@@ -26,7 +26,7 @@
             android:id="@+id/directions_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"/>
+            android:layout_marginTop="200dp"/>
 
         </FrameLayout>
     <!-- The navigation drawer -->

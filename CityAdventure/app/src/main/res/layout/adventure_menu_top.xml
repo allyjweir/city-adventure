@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
-    android:background="@color/green">
+    android:layout_height="150dp"
+    android:background="@drawable/glasgow_background">
 
     <TextView
-        android:padding="20dp"
+        android:padding="10dp"
         android:id="@+id/adventure_user_name"
         android:layout_alignParentBottom="true"
         android:paddingLeft="20dp"
-        android:textSize="40sp"
+        android:textSize="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/transparent_light_gray"

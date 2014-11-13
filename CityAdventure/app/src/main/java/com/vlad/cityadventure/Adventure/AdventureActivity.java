@@ -72,6 +72,11 @@ public class AdventureActivity extends Activity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
 
+        /** initializing the actual adventure activity views*/
+
+        ListView adventureSteps = (ListView) findViewById(R.id.directions_list);
+        adventureSteps.setAdapter(new AdventureStepsAdapter("Kelvingrove Art Gallery,University Of Glasgow,Some Other Place,Pizza Hut, Kelvingrove Park, George Square".split(",")));
+
     }
 
     @Override
