@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.vlad.cityadventure.Adventure.AdventureActivity;
+import com.vlad.cityadventure.Dashboard.DashboardActivity;
 
 
 public class StartupActivity extends Activity {
@@ -22,7 +23,7 @@ public class StartupActivity extends Activity {
         findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StartupActivity.this, AdventureActivity.class));
+                startActivity(new Intent(StartupActivity.this, DashboardActivity.class));
             }
         });
     }

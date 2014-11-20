@@ -1,44 +1,49 @@
-package com.vlad.cityadventure.Adventure;
+package com.vlad.cityadventure.Dashboard;
 
 import android.app.Activity;
+import android.app.ActionBar;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
-import android.text.style.TypefaceSpan;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.view.ViewGroup;
+import android.os.Build;
 import android.widget.ListView;
-import android.widget.TextView;
 
+import com.vlad.cityadventure.Adventure.AdventureMenuAdapter;
 import com.vlad.cityadventure.R;
 
-public class AdventureActivity extends Activity {
+public class DashboardActivity extends Activity implements DashboardAdventureFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private ListView mDrawerList;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_adventure);
-
+        setContentView(R.layout.activity_dashboard);
+        if (savedInstanceState == null) {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.add(R.id.adventure_container, new DashboardAdventureFragment());
+            transaction.add(R.id.recommend_container, new DashboardRecommendFragment());
+            transaction.commit();
+        }
         getActionBar().setIcon(//hides the action bar icon
                 new ColorDrawable(getResources().getColor(android.R.color.transparent)));
         getActionBar().setTitle("City Adventure");
 
-        Typeface tf = Typeface.createFromAsset(getAssets(),"fonts/Pacifico.ttf");//gets the font ttf file from assets
-//        TextView title = (TextView) getActionBar().getCustomView().findViewById(R.id.action_bar_title);
-//        title.setTypeface(tf);//sets the font for these views
 
-
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.dashboard_drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.drawable.common_signin_btn_icon_normal_dark, R.string.drawer_open, R.string.drawer_close) {
 
@@ -61,29 +66,17 @@ public class AdventureActivity extends Activity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
 
-        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        mDrawerList = (ListView) findViewById(R.id.dashboard_left_drawer);
 
         // Set the adapter for the list view
         mDrawerList.setAdapter(new AdventureMenuAdapter());
         // Set the list's click listener
-       // mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+        // mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
-
-        /** initializing the actual adventure activity views*/
-
-        ListView adventureSteps = (ListView) findViewById(R.id.directions_list);
-        adventureSteps.setAdapter(new AdventureStepsAdapter("Kelvingrove Art Gallery,University Of Glasgow,Some Other Place,Pizza Hut, Kelvingrove Park, George Square".split(",")));
-
     }
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        // Sync the toggle state after onRestoreInstanceState has occurred.
-        mDrawerToggle.syncState();
-    }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -131,5 +124,26 @@ public class AdventureActivity extends Activity {
 //        if (id == R.id.action_settings) {
 //            return true;
 //        }
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+        //todo
+    }
+
+    /**
+     * A placeholder fragment containing a simple view.
+     */
+    public static class PlaceholderFragment extends Fragment {
+
+        public PlaceholderFragment() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
+            return rootView;
+        }
     }
 }
