@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.vlad.cityadventure.adventure.AdventureMenuAdapter;
 import com.vlad.cityadventure.R;
+import com.vlad.cityadventure.utils.Utils;
 
 public class DashboardActivity extends Activity implements DashboardAdventureFragment.OnFragmentInteractionListener {
 
@@ -68,7 +69,7 @@ public class DashboardActivity extends Activity implements DashboardAdventureFra
         // Set the adapter for the list view
         mDrawerList.setAdapter(new AdventureMenuAdapter());
         // Set the list's click listener
-        // mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+        Utils.setMenuListener(mDrawerList, this);
     }
 
     @Override

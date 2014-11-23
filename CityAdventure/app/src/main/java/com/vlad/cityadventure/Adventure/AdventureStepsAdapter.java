@@ -52,7 +52,7 @@ public class AdventureStepsAdapter extends BaseAdapter {
         convertView = inflater.inflate(R.layout.row_adventure_location, parent, false);
         ((TextView) convertView.findViewById(R.id.adventure_location_title)).setText(landmarks.get(position).getName());
         ((TextView) convertView.findViewById(R.id.adventure_location_description)).setText(landmarks.get(position).getDescription());
-        if (progress>position){
+        if (progress>position){//if this landmark has been visited and completed change color to green, might want to have orange for partial completion as well
             convertView.findViewById(R.id.progress_line).setBackgroundColor(activity.getResources().getColor(R.color.city_green));
             convertView.findViewById(R.id.circle).setBackground(activity.getResources().getDrawable(R.drawable.green_circle));
         }

@@ -7,16 +7,19 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.vlad.cityadventure.R;
+import com.vlad.cityadventure.utils.UserManager;
 
 /**
  * Created by Vladislavs on 06/11/2014.
+ * This is the slide-out menu adapter
+ * All the data here is hardcoded as it doesn't change throughout the app
  */
 public class AdventureMenuAdapter extends BaseAdapter {
     private String[] menuTitles;
     private LayoutInflater inflater;
 
     public AdventureMenuAdapter() {
-        menuTitles = "Current Trail,Adventures,Quizzes,Travel Info,Settings,Get Help,Send Feedback".split(",");
+        menuTitles = "Current Trail,Adventures,Quizzes,Get Help,Send Feedback".split(",");
 
     }
 
@@ -41,7 +44,8 @@ public class AdventureMenuAdapter extends BaseAdapter {
             inflater = (LayoutInflater.from(parent.getContext()));
         if (position == 0) {
             convertView = inflater.inflate(R.layout.adventure_menu_top, parent, false);
-            ((TextView) convertView.findViewById(R.id.adventure_user_name)).setText("Ally Weir");
+            ((TextView) convertView.findViewById(R.id.adventure_user_name)).setText(UserManager.getInstance().getFirstName()+
+            " " + UserManager.getInstance().getLastName());
             return convertView;
         } else {
             convertView = inflater.inflate(R.layout.row_adventure_option, parent, false);

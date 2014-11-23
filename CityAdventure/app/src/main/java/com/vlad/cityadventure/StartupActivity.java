@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vlad.cityadventure.dashboard.DashboardActivity;
+import com.vlad.cityadventure.utils.UserManager;
 
 /**
  * The first activity the user sees
@@ -26,7 +27,7 @@ public class StartupActivity extends Activity {
         setContentView(R.layout.activity_startup);
 
         //todo temp
-        startActivity(new Intent(StartupActivity.this, DashboardActivity.class));
+       // startActivity(new Intent(StartupActivity.this, DashboardActivity.class));
 
         ActionBar actionBar = getActionBar();
         if (actionBar != null) actionBar.hide();//hides the actionbar
@@ -53,6 +54,8 @@ public class StartupActivity extends Activity {
         if (username.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please enter your username and password!", Toast.LENGTH_SHORT).show();
         } else if (username.equals("vlad") || password.equals("password")) {//todo should be better logic like a database stored on device
+            UserManager.getInstance().setFirstName("Vlad");
+            UserManager.getInstance().setLastName("Z");
             startActivity(new Intent(StartupActivity.this, DashboardActivity.class));
         } else {
             Toast.makeText(this, "Incorrect password. Please try again!", Toast.LENGTH_SHORT).show();

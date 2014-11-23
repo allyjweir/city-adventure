@@ -1,32 +1,69 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/object_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@drawable/glasgow_background">
-
-        <TextView
-            android:id="@+id/adventure_user_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@color/transparent_light_gray"
-            android:padding="10dp"
-            android:paddingLeft="20dp"
-            android:text="Kelvingrove Art Gallery"
-            android:textSize="20sp" />
-
-    </RelativeLayout>
-
+    android:background="@color/city_blue">
+    <!-- The main content view -->
     <FrameLayout
-        android:id="@+id/achievement_container"
+        android:id="@+id/object_content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/glasgow_background">
+
+                <TextView
+                    android:id="@+id/object_title"
+                    android:padding="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:paddingLeft="20dp"
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent_light_gray"/>
+
+            </RelativeLayout>
+
+            <FrameLayout
+                android:layout_margin="5dp"
+                android:id="@+id/object_achievement_container"
+                android:layout_width="match_parent"
+                android:layout_height="120dp" />
+
+            <FrameLayout
+                android:layout_margin="5dp"
+                android:id="@+id/object_task_container"
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
+
+            <Button
+                android:id="@+id/quiz_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="Take the Quiz"/>
+
+
+        </LinearLayout>
+    </FrameLayout>
+    <!-- The navigation drawer -->
+
+    <ListView
+        android:id="@+id/object_left_drawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.vlad.cityadventure.object.ObjectActivity"
-        tools:ignore="MergeRootFrame" />
-</LinearLayout>
+        android:layout_gravity="start"
+        android:layout_marginRight="30dp"
+        android:background="@android:color/white"
+        android:choiceMode="singleChoice"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="0dp" />
+</android.support.v4.widget.DrawerLayout>

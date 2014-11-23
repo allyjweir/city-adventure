@@ -3,6 +3,7 @@ package com.vlad.cityadventure.adventure;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,6 +22,8 @@ import com.vlad.cityadventure.R;
 import com.vlad.cityadventure.classes.Adventure;
 import com.vlad.cityadventure.classes.Landmark;
 import com.vlad.cityadventure.dashboard.DashboardAdventureFragment;
+import com.vlad.cityadventure.object.ObjectActivity;
+import com.vlad.cityadventure.utils.Utils;
 
 import java.util.LinkedList;
 
@@ -62,13 +66,22 @@ public class AdventureActivity extends Activity {
         // Set the adapter for the list view
         mDrawerList.setAdapter(new AdventureMenuAdapter());
         // Set the list's click listener
-       // mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+        Utils.setMenuListener(mDrawerList, this);
 
         /** initializing the actual adventure activity views*/
         if (!setAdventure(getIntent().getStringExtra(DashboardAdventureFragment.ID)))
             finish();
         ListView adventureSteps = (ListView) findViewById(R.id.directions_list);
         adventureSteps.setAdapter(new AdventureStepsAdapter(adventure.getRoute(), progress, AdventureActivity.this));
+        adventureSteps.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //todo meaningful logic
+                Intent intent = new Intent(AdventureActivity.this, ObjectActivity.class);
+                intent.putExtra("TITLE", ((AdventureStepsAdapter) parent.getAdapter()).getItem(position).getName());
+                startActivity(intent);
+            }
+        });
 
     }
 
