@@ -33,6 +33,7 @@
         </LinearLayout>
 
     <ImageView
+        android:padding="5dp"
         android:clickable="true"
         android:id="@+id/adventure_button"
         android:layout_alignParentRight="true"

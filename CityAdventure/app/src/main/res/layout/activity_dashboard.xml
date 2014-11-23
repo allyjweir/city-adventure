@@ -14,19 +14,11 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
+            <fragment
                 android:id="@+id/dashboard_map"
+                class="com.google.android.gms.maps.MapFragment"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@drawable/map_image"
-                android:gravity="center"
-                android:textColor="@android:color/black" />
-            <!--Cant test maps on virtual devices-->
-            <!--<fragment-->
-            <!--android:id="@+id/map"-->
-            <!--android:name="com.google.android.gms.maps.MapFragment"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"/>-->
+                android:layout_height="200dp"/>
             <FrameLayout
                 android:id="@+id/adventure_container"
                 android:layout_width="match_parent"

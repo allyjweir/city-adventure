@@ -20,6 +20,14 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.vlad.cityadventure.adventure.AdventureMenuAdapter;
 import com.vlad.cityadventure.R;
 import com.vlad.cityadventure.utils.Utils;
@@ -70,6 +78,16 @@ public class DashboardActivity extends Activity implements DashboardAdventureFra
         mDrawerList.setAdapter(new AdventureMenuAdapter());
         // Set the list's click listener
         Utils.setMenuListener(mDrawerList, this);
+
+        GoogleMap googleMap;
+        googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.dashboard_map)).getMap();
+        double lat = 55.871620;
+        double lng = -4.289067;
+        LatLng myLocation = new LatLng(lat, lng);//todo Glasgow Uni can use location manager instead, which is more time consuming
+        Marker TP = googleMap.addMarker(new MarkerOptions().position(myLocation).title("The University of Glasgow"));
+        CameraPosition cameraPosition = new CameraPosition.Builder().target(myLocation).zoom(14.0f).build();
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
+        googleMap.moveCamera(cameraUpdate);
     }
 
     @Override
