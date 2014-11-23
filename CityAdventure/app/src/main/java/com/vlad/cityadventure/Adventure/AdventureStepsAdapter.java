@@ -1,5 +1,7 @@
 package com.vlad.cityadventure.adventure;
 
+import android.app.Activity;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,27 +9,35 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.vlad.cityadventure.R;
+import com.vlad.cityadventure.classes.Adventure;
+import com.vlad.cityadventure.classes.Landmark;
+
+import java.util.LinkedList;
 
 /**
  * Created by Vladislavs on 06/11/2014.
  */
 public class AdventureStepsAdapter extends BaseAdapter {
-    private String[] landmarks;//todo this should be either tasks or landmarks
+    private LinkedList<Landmark> landmarks;
     private LayoutInflater inflater;
+    private int progress;
+    private Activity activity;
 
-    public AdventureStepsAdapter(String[] landmarks) {
+    public AdventureStepsAdapter(LinkedList<Landmark> landmarks, int progress, Activity activity) {
         this.landmarks = landmarks;
+        this.progress = progress;
+        this.activity = activity;
 
     }
 
     @Override
     public int getCount() {
-        return landmarks.length;
+        return landmarks.size();
     }
 
     @Override
-    public Object getItem(int position) {
-        return landmarks[position];
+    public Landmark getItem(int position) {
+        return landmarks.get(position);
     }
 
     @Override
@@ -40,8 +50,12 @@ public class AdventureStepsAdapter extends BaseAdapter {
         if (inflater == null)
             inflater = (LayoutInflater.from(parent.getContext()));
         convertView = inflater.inflate(R.layout.row_adventure_location, parent, false);
-        ((TextView) convertView.findViewById(R.id.adventure_location_title)).setText(landmarks[position]);
-        ((TextView) convertView.findViewById(R.id.adventure_location_description)).setText("This is a landmark. Here you can find it's description and maybe an idea of what you could do here. Clicking on it will bring up the tasks associated with this landmark.");
+        ((TextView) convertView.findViewById(R.id.adventure_location_title)).setText(landmarks.get(position).getName());
+        ((TextView) convertView.findViewById(R.id.adventure_location_description)).setText(landmarks.get(position).getDescription());
+        if (progress>position){
+            convertView.findViewById(R.id.progress_line).setBackgroundColor(activity.getResources().getColor(R.color.city_green));
+            convertView.findViewById(R.id.circle).setBackground(activity.getResources().getDrawable(R.drawable.green_circle));
+        }
         return convertView;
 
     }

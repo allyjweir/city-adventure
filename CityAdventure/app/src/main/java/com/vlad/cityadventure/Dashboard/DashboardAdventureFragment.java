@@ -14,21 +14,13 @@ import com.vlad.cityadventure.adventure.AdventureActivity;
 import com.vlad.cityadventure.R;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link DashboardAdventureFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link DashboardAdventureFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Adventure fragment
  */
 public class DashboardAdventureFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String TITLE = "param1";
-    private static final String ID = "param2";
-    private static final String PROGRESS = "param2";
+    public static final String TITLE = "param1";
+    public static final String ID = "param2";
+    public static final String PROGRESS = "param2";
 
-    // TODO: Rename and change types of parameters
     private String adventureTitle;
     private String adventureId;
     private int progress;
@@ -80,7 +72,9 @@ public class DashboardAdventureFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //todo fetch adventure data and launch adventure activity
-                startActivity(new Intent(getActivity(), AdventureActivity.class));
+                Intent intent = new Intent(getActivity(), AdventureActivity.class);
+                intent.putExtra(ID, adventureId);
+                startActivity(intent);
             }
         });
         TextView progressView = (TextView) view.findViewById(R.id.progress);

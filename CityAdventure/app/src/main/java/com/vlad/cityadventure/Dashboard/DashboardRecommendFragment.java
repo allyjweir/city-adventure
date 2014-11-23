@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.vlad.cityadventure.R;
@@ -73,6 +74,13 @@ public class DashboardRecommendFragment extends Fragment {
         // initialise your views
         recommendations = (GridView) view.findViewById(R.id.recommend);
         recommendations.setAdapter(new DashboardRecommendAdapter(userId));
+        recommendations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String recommendation = (String) parent.getAdapter().getItem(position);
+                //todo do something with the string and launch recommendations activity
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event
