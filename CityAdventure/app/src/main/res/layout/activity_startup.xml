@@ -10,20 +10,32 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/startup_label"
+            android:text="City Adventure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:layout_marginBottom="30dp"/>
         <EditText
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:hint="user name"/>
+            android:hint="user name"
+            android:id="@+id/username_entry"/>
         <EditText
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:hint="password"/>
+            android:hint="password"
+            android:id="@+id/password_entry"
+            android:inputType="textPassword"/>
         <Button
             android:id="@+id/login_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign In"/>
+            android:text="Sign In"
+            android:background="@drawable/selector_blue"/>
         </LinearLayout>
 
 </RelativeLayout>

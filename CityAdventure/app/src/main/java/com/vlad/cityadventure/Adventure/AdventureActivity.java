@@ -1,4 +1,4 @@
-package com.vlad.cityadventure.Adventure;
+package com.vlad.cityadventure.adventure;
 
 import android.app.Activity;
 import android.content.res.Configuration;
@@ -7,13 +7,11 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
-import android.text.style.TypefaceSpan;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.vlad.cityadventure.R;
 
@@ -32,11 +30,6 @@ public class AdventureActivity extends Activity {
         getActionBar().setIcon(//hides the action bar icon
                 new ColorDrawable(getResources().getColor(android.R.color.transparent)));
         getActionBar().setTitle("City Adventure");
-
-        Typeface tf = Typeface.createFromAsset(getAssets(),"fonts/Pacifico.ttf");//gets the font ttf file from assets
-//        TextView title = (TextView) getActionBar().getCustomView().findViewById(R.id.action_bar_title);
-//        title.setTypeface(tf);//sets the font for these views
-
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,

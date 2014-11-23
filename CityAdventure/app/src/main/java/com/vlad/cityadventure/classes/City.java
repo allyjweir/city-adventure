@@ -1,11 +1,9 @@
-package com.vlad.cityadventure.Adventure.classes;
+package com.vlad.cityadventure.classes;
 
 /**
  * Pretty much a landmark, but it also contains many landmarks within it and has
  * adventures associated with it
  */
-
-import com.vlad.cityadventure.Adventure.classes.Adventure;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.vlad.cityadventure.Adventure;
+package com.vlad.cityadventure.adventure;
 
 import android.view.LayoutInflater;
 import android.view.View;

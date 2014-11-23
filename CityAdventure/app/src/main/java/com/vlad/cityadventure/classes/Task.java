@@ -1,4 +1,4 @@
-package com.vlad.cityadventure.Adventure.classes;
+package com.vlad.cityadventure.classes;
 
 /**
  * A task is associated with a specific landmark (can be city)

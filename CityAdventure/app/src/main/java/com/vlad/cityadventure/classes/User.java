@@ -1,4 +1,4 @@
-package com.vlad.cityadventure.Adventure.classes;
+package com.vlad.cityadventure.classes;
 
 /**
  * This is the user class, which will contain all of their achievements photos, etc

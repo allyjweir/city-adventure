@@ -1,4 +1,4 @@
-package com.vlad.cityadventure.Dashboard;
+package com.vlad.cityadventure.dashboard;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +15,14 @@ public class DashboardRecommendAdapter extends BaseAdapter {
     private String[] menuTitles;
     private LayoutInflater inflater;
 
-    public DashboardRecommendAdapter() {
-        menuTitles = ("Current Trail,Recommend,Recommend,Recommend,Recommend,Recommend,Recommend,Recommend,Recommend,Recommend,Recommend,Recommend,Recommend,Recommend,Recommend" +
-                ",Recommend,Recommend,Recommend,Recommend,Recommend,Recommend,Recommend,Recommend,Recommend,Recommend,Recommend").split(",");
+    public DashboardRecommendAdapter(String userId) {
+        menuTitles = getTags(userId);
 
+    }
+
+    //todo needs some meaningful logic to get the tags
+    public String[] getTags(String id){
+        return ("Food,Parks,Fast Food,Sushi,Acoustic Music,Shopping,Antique").split(",");
     }
 
     @Override

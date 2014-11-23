@@ -1,58 +1,56 @@
-package com.vlad.cityadventure.dashboard;
+package com.vlad.cityadventure.object;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.vlad.cityadventure.adventure.AdventureActivity;
 import com.vlad.cityadventure.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link android.app.Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link DashboardAdventureFragment.OnFragmentInteractionListener} interface
+ * {@link ObjectAvhievementFragment.OnObjectFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link DashboardAdventureFragment#newInstance} factory method to
+ * Use the {@link ObjectAvhievementFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DashboardAdventureFragment extends Fragment {
+public class ObjectAvhievementFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String TITLE = "param1";
-    private static final String ID = "param2";
-    private static final String PROGRESS = "param2";
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String adventureTitle;
-    private String adventureId;
-    private int progress;
+    private String mParam1;
+    private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private OnObjectFragmentInteractionListener mListener;
 
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
      * @return A new instance of fragment DashboardAdventureFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static DashboardAdventureFragment newInstance(String adventureTitle, String adventureId, int progress) {
-        DashboardAdventureFragment fragment = new DashboardAdventureFragment();
+    public static ObjectAvhievementFragment newInstance(String param1, String param2) {
+        ObjectAvhievementFragment fragment = new ObjectAvhievementFragment();
         Bundle args = new Bundle();
-        args.putString(TITLE, adventureTitle);
-        args.putString(ID, adventureId);
-        args.putInt(PROGRESS, progress);
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public DashboardAdventureFragment() {
+    public ObjectAvhievementFragment() {
         // Required empty public constructor
     }
 
@@ -60,9 +58,8 @@ public class DashboardAdventureFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            adventureTitle = getArguments().getString(TITLE);
-            adventureId = getArguments().getString(ID);
-            progress = getArguments().getInt(PROGRESS, 0);
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -74,27 +71,15 @@ public class DashboardAdventureFragment extends Fragment {
 //        adventure_button
     }
 
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-        view.findViewById(R.id.adventure_button).setOnClickListener(new View.OnClickListener() {
+        // initialise your views
+        getView().findViewById(R.id.adventure_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //todo fetch adventure data and launch adventure activity
                 startActivity(new Intent(getActivity(), AdventureActivity.class));
             }
         });
-        TextView progressView = (TextView) view.findViewById(R.id.progress);
-        progressView.setText(progress + "% complete");
-        TextView statusView = (TextView) view.findViewById(R.id.dashboard_adventure_status);
-        if (progress == 100) {
-            progressView.setTextColor(getResources().getColor(R.color.green));
-            statusView.setText("Recent adventure");
-        } else {
-            progressView.setTextColor(getResources().getColor(R.color.orange));
-        }
-        TextView titleView = (TextView) view.findViewById(R.id.dashboard_adventure_title);
-        titleView.setText(adventureTitle);
-
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -108,7 +93,7 @@ public class DashboardAdventureFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnFragmentInteractionListener) activity;
+            mListener = (OnObjectFragmentInteractionListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -131,7 +116,7 @@ public class DashboardAdventureFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface OnObjectFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }

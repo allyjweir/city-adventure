@@ -1,7 +1,8 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/dashboard_drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/city_blue">
     <!-- The main content view -->
     <FrameLayout
         android:id="@+id/dashboard_content_frame"
@@ -17,9 +18,8 @@
                 android:id="@+id/dashboard_map"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="@color/darkblue"
+                android:background="@drawable/map_image"
                 android:gravity="center"
-                android:text="Cant Test Maps on Virtual Devices"
                 android:textColor="@android:color/black" />
             <!--Cant test maps on virtual devices-->
             <!--<fragment-->
@@ -30,7 +30,7 @@
             <FrameLayout
                 android:id="@+id/adventure_container"
                 android:layout_width="match_parent"
-                android:layout_height="150dp" />
+                android:layout_height="120dp" />
 
             <FrameLayout
                 android:id="@+id/recommend_container"

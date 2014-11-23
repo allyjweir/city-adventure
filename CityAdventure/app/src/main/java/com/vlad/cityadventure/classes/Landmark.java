@@ -1,4 +1,4 @@
-package com.vlad.cityadventure.Adventure.classes;
+package com.vlad.cityadventure.classes;
 
 import java.lang.String;
 import java.util.ArrayList;

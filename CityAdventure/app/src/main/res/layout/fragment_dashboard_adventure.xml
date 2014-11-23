@@ -5,35 +5,41 @@
     android:layout_margin="10dp"
     android:background="@drawable/border"
     android:layout_height="match_parent"
-    tools:context="com.vlad.cityadventure.Dashboard.DashboardAdventureFragment"
+    tools:context="com.vlad.cityadventure.dashboard.DashboardAdventureFragment"
     android:gravity="center_vertical">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center_vertical">
         <TextView
+            android:id="@+id/dashboard_adventure_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Current Adventure"
             android:textSize="12sp"/>
         <TextView
+            android:id="@+id/dashboard_adventure_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Historic Glasgow"
             android:textSize="18sp"/>
         <TextView
+            android:id="@+id/progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="45% complete"
-            android:textColor="@color/orange"
             android:textSize="14sp"/>
         </LinearLayout>
 
     <ImageView
+        android:clickable="true"
+        android:id="@+id/adventure_button"
         android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@android:drawable/ic_media_play"/>
+        android:src="@android:drawable/ic_media_play"
+        android:background="@drawable/selector_gray_circle"/>
 
 </RelativeLayout>

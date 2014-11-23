@@ -1,4 +1,4 @@
-package com.vlad.cityadventure.Adventure.classes;
+package com.vlad.cityadventure.classes;
 
 /**
  * A question with the question text, answer options and the correct answer
@@ -13,8 +13,6 @@ package com.vlad.cityadventure.Adventure.classes;
 
 import java.lang.Boolean;
 import java.lang.String;
-
-import com.vlad.cityadventure.Adventure.classes.Landmark;
 
 
 public class Question {

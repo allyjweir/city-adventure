@@ -1,53 +1,61 @@
 package com.vlad.cityadventure;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.vlad.cityadventure.Adventure.AdventureActivity;
-import com.vlad.cityadventure.Dashboard.DashboardActivity;
+import com.vlad.cityadventure.dashboard.DashboardActivity;
 
-
+/**
+ * The first activity the user sees
+ * it simply contains the login EditTexts and a sign in button
+ * has mock login logic
+ */
 public class StartupActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_startup);
-        getActionBar().setIcon(R.drawable.common_signin_btn_icon_normal_dark);
-        getActionBar().setTitle("City Adventure");
-        findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
+
+        //todo temp
+        startActivity(new Intent(StartupActivity.this, DashboardActivity.class));
+
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) actionBar.hide();//hides the actionbar
+        final Button login = (Button) findViewById(R.id.login_button);
+        final EditText user = (EditText) findViewById(R.id.username_entry);
+        final EditText password = (EditText) findViewById(R.id.password_entry);
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StartupActivity.this, DashboardActivity.class));
+                login(user.getText().toString(), password.getText().toString());
             }
         });
+
+        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/Pacifico.ttf");//gets the font ttf file from assets
+        TextView title = (TextView) findViewById(R.id.startup_label);
+        title.setTypeface(tf);//sets the font for these views
+        login.setTypeface(tf);
+        user.setTypeface(tf);
+        password.setTypeface(tf);
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_startup, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    private void login(String username, String password) {
+        //should contact server and verify and then fetch data, we just mock it here
+        if (username.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Please enter your username and password!", Toast.LENGTH_SHORT).show();
+        } else if (username.equals("vlad") || password.equals("password")) {//todo should be better logic like a database stored on device
+            startActivity(new Intent(StartupActivity.this, DashboardActivity.class));
+        } else {
+            Toast.makeText(this, "Incorrect password. Please try again!", Toast.LENGTH_SHORT).show();
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }

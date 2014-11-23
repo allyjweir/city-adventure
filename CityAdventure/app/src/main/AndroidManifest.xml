@@ -6,7 +6,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/CityAdventureTheme" >
         <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
         <uses-permission android:name="android.permission.INTERNET" />
         <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
@@ -31,12 +31,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.vlad.cityadventure.Adventure.AdventureActivity"
+            android:name="com.vlad.cityadventure.adventure.AdventureActivity"
             android:label="@string/title_activity_adventure" >
         </activity>
         <activity
-            android:name="com.vlad.cityadventure.Dashboard.DashboardActivity"
+            android:name="com.vlad.cityadventure.dashboard.DashboardActivity"
             android:label="@string/title_activity_dashboard" >
+        </activity>
+        <activity
+            android:name=".object.ObjectActivity"
+            android:label="@string/title_activity_object" >
         </activity>
     </application>
 
