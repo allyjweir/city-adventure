@@ -14,13 +14,13 @@ public class Landmark {
     public String type_of_venue;
     public float latitude;
     public float longitude;
-    public City city;
-    public ArrayList<Task> tasks;
+    public String city;
+    public ArrayList<String> tasks;
     public ArrayList<Question> questions;
     public int visitor_count;
 
     public Landmark(String name, String description, String type_of_venue, float latitude,
-                    float longitude, City city, ArrayList<Task> tasks,
+                    float longitude, String city, ArrayList<String> tasks,
                     ArrayList<Question> questions, int visitor_count) {
         this.name = name;
         this.description = description;
@@ -79,19 +79,19 @@ public class Landmark {
         this.longitude = longitude;
     }
 
-    public City getCity() {
+    public String getCity() {
         return city;
     }
 
-    public void setCity(City city) {
+    public void setCity(String city) {
         this.city = city;
     }
 
-    public ArrayList<Task> getTasks() {
+    public ArrayList<String> getTasks() {
         return tasks;
     }
 
-    public void setTasks(ArrayList<Task> tasks) {
+    public void setTasks(ArrayList<String> tasks) {
         this.tasks = tasks;
     }
 

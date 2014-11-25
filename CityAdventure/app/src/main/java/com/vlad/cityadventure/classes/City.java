@@ -8,14 +8,39 @@ package com.vlad.cityadventure.classes;
 import java.util.ArrayList;
 
 public class City extends Landmark {
-    public String country;
-    public ArrayList<Landmark> landmarks;
-    public ArrayList<Adventure> adventures;
+    private String country;
+    private ArrayList<String> landmarks;
+    private ArrayList<String> adventures;
 
-    public City(String name, String description, String type_of_venue, float latitude,
-                float longitude, City city, ArrayList<Task> tasks,
-                ArrayList<Question> questions, int visitor_count){
-        super(name, description, type_of_venue, latitude, longitude, city, tasks,
-                questions, visitor_count);
+    public City(String name, String description, String type_of_venue, float latitude, float longitude, String city, ArrayList<String> tasks,
+                ArrayList<Question> questions, int visitor_count, String country, ArrayList<String> landmarks, ArrayList<String> adventures) {
+        super(name, description, type_of_venue, latitude, longitude, city, tasks, questions, visitor_count);
+        this.country = country;
+        this.landmarks = landmarks;
+        this.adventures = adventures;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public ArrayList<String> getLandmarks() {
+        return landmarks;
+    }
+
+    public void setLandmarks(ArrayList<String> landmarks) {
+        this.landmarks = landmarks;
+    }
+
+    public ArrayList<String> getAdventures() {
+        return adventures;
+    }
+
+    public void setAdventures(ArrayList<String> adventures) {
+        this.adventures = adventures;
     }
 }

@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -20,6 +21,9 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -30,13 +34,18 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.vlad.cityadventure.adventure.AdventureMenuAdapter;
 import com.vlad.cityadventure.R;
+import com.vlad.cityadventure.utils.UserManager;
 import com.vlad.cityadventure.utils.Utils;
 
-public class DashboardActivity extends Activity implements DashboardAdventureFragment.OnFragmentInteractionListener {
+public class DashboardActivity extends Activity implements DashboardAdventureFragment.OnFragmentInteractionListener, GooglePlayServicesClient.ConnectionCallbacks,
+        GooglePlayServicesClient.OnConnectionFailedListener {
+
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private ListView mDrawerList;
+    private LocationClient mLocationClient;
+    private GoogleMap googleMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +53,14 @@ public class DashboardActivity extends Activity implements DashboardAdventureFra
         setContentView(R.layout.activity_dashboard);
         if (savedInstanceState == null) {
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.add(R.id.adventure_container, DashboardAdventureFragment.newInstance("Historic Glasgow", "UKGLAH02", 100));
+            transaction.add(R.id.adventure_container, DashboardAdventureFragment.newInstance(UserManager.getInstance().getUser().getCurrentAdventure(), 0));
             transaction.add(R.id.recommend_container, new DashboardRecommendFragment());
             transaction.commit();
         }
 
         setupActionBar();
+        mLocationClient = new LocationClient(this, this, this);
+
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.dashboard_drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
@@ -79,15 +90,8 @@ public class DashboardActivity extends Activity implements DashboardAdventureFra
         // Set the list's click listener
         Utils.setMenuListener(mDrawerList, this);
 
-        GoogleMap googleMap;
-        googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.dashboard_map)).getMap();
-        double lat = 55.871620;
-        double lng = -4.289067;
-        LatLng myLocation = new LatLng(lat, lng);//todo Glasgow Uni can use location manager instead, which is more time consuming
-        Marker TP = googleMap.addMarker(new MarkerOptions().position(myLocation).title("The University of Glasgow"));
-        CameraPosition cameraPosition = new CameraPosition.Builder().target(myLocation).zoom(14.0f).build();
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
-        googleMap.moveCamera(cameraUpdate);
+
+
     }
 
     @Override
@@ -136,4 +140,49 @@ public class DashboardActivity extends Activity implements DashboardAdventureFra
         ab.setDisplayHomeAsUpEnabled(false);
         ab.setHomeButtonEnabled(true);
     }
+
+    @Override
+    public void onConnected(Bundle bundle) {
+        Location mCurrentLocation;
+        mCurrentLocation = mLocationClient.getLastLocation();
+        googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.dashboard_map)).getMap();
+        double lat = mCurrentLocation.getLatitude();
+        double lng = mCurrentLocation.getLongitude();
+        LatLng myLocation = new LatLng(lat, lng);//todo Glasgow Uni can use location manager instead, which is more time consuming
+        Marker TP = googleMap.addMarker(new MarkerOptions().position(myLocation).title("My Location"));
+        CameraPosition cameraPosition = new CameraPosition.Builder().target(myLocation).zoom(14.0f).build();
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
+        googleMap.moveCamera(cameraUpdate);
+    }
+
+    @Override
+    public void onDisconnected() {
+
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+
+    }
+
+    /*
+ * Called when the Activity becomes visible.
+ */
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Connect the client.
+        mLocationClient.connect();
+    }
+
+    /*
+     * Called when the Activity is no longer visible.
+     */
+    @Override
+    protected void onStop() {
+        // Disconnecting the client invalidates it.
+        mLocationClient.disconnect();
+        super.onStop();
+    }
+
 }

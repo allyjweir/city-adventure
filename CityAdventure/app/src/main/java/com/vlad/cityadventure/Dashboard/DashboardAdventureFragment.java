@@ -12,13 +12,13 @@ import android.widget.TextView;
 
 import com.vlad.cityadventure.adventure.AdventureActivity;
 import com.vlad.cityadventure.R;
+import com.vlad.cityadventure.utils.MockDatabase;
 
 /**
  * Adventure fragment
  */
 public class DashboardAdventureFragment extends Fragment {
-    public static final String TITLE = "param1";
-    public static final String ID = "param2";
+    public static final String ID = "param1";
     public static final String PROGRESS = "param2";
 
     private String adventureTitle;
@@ -34,10 +34,9 @@ public class DashboardAdventureFragment extends Fragment {
      * @return A new instance of fragment DashboardAdventureFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static DashboardAdventureFragment newInstance(String adventureTitle, String adventureId, int progress) {
+    public static DashboardAdventureFragment newInstance(String adventureId, int progress) {
         DashboardAdventureFragment fragment = new DashboardAdventureFragment();
         Bundle args = new Bundle();
-        args.putString(TITLE, adventureTitle);
         args.putString(ID, adventureId);
         args.putInt(PROGRESS, progress);
         fragment.setArguments(args);
@@ -52,8 +51,8 @@ public class DashboardAdventureFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            adventureTitle = getArguments().getString(TITLE);
             adventureId = getArguments().getString(ID);
+            adventureTitle = MockDatabase.getInstance().getAdventures().get(adventureId).getTitle();
             progress = getArguments().getInt(PROGRESS, 0);
         }
     }

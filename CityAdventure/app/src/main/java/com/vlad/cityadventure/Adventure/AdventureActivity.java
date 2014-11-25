@@ -31,6 +31,7 @@ import com.vlad.cityadventure.classes.Adventure;
 import com.vlad.cityadventure.classes.Landmark;
 import com.vlad.cityadventure.dashboard.DashboardAdventureFragment;
 import com.vlad.cityadventure.object.ObjectActivity;
+import com.vlad.cityadventure.utils.MockDatabase;
 import com.vlad.cityadventure.utils.Utils;
 
 import java.util.LinkedList;
@@ -145,26 +146,7 @@ public class AdventureActivity extends Activity {
      * at the moment this is mocked
      */
     private boolean setAdventure(String adventureId){
-        Adventure adventure = new Adventure();
-        LinkedList<Landmark> landmarks = new LinkedList<Landmark>();
-        Landmark hunterian = new Landmark("Hunterian Museum and Art Gallery", "The University of Glasgow's Hunterian is the oldest museum in Scotland. " +
-                "It covers The Hunterian Museum, The Hunterian Art Gallery, The Mackintosh House, The Zoology Museum and The Anatomy Museum, " +
-                "all located in various buildings on the main campus of the University in the west end of Glasgow.", "museum", (float) 55.8719,
-                (float) -4.2886, null, null, null, 10032);
-        landmarks.add(hunterian);
-        Landmark kelvingrove = new Landmark("Kelvingrove Art Gallery and Museum", "The Kelvingrove Art Gallery and Museum is a museum and art gallery" +
-                " in Glasgow, Scotland. The building houses one of Europe's great civic art collections. Since its 2003–06 refurbishment, " +
-                "the museum has been the most popular free-to-enter visitor attraction in Scotland,and the most visited museum in the United " +
-                "Kingdom outside London.", "museum", (float) 55.8686,
-                (float) -4.2905, null, null, null, 192032);
-        landmarks.add(kelvingrove);
-        Landmark riverside = new Landmark("Riverside Museum", "The Riverside Museum is a new development for the Glasgow Museum of Transport," +
-                " completed on 20 June 2011, at Pointhouse Quay in the Glasgow Harbour regeneration district of Glasgow, Scotland. The next day" +
-                " it opened to the public.On 18 May 2013, the museum was announced as the Winner of the 2013 European Museum of the Year Award.", "museum", (float) 55.8651,
-                (float) -4.3064, null, null, null, 3032);
-        landmarks.add(riverside);
-        adventure.setRoute(landmarks);
-        this.adventure = adventure;
+        adventure = MockDatabase.getInstance().getAdventures().get(adventureId);
         progress = 1;
         return true;
     }
@@ -178,8 +160,9 @@ public class AdventureActivity extends Activity {
         LatLng myLocation = new LatLng(lat, lng);//todo Glasgow Uni can use location manager instead, which is more time consuming
         CameraPosition cameraPosition = new CameraPosition.Builder().target(myLocation).zoom(14.0f).build();
         CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
-        for (Landmark m : adventure.getRoute()){//adds marker for each location with title
-            googleMap.addMarker(new MarkerOptions().position(new LatLng(m.getLatitude(), m.getLongitude())).title(m.getName()));
+        for (String m : adventure.getRoute()){//adds marker for each location with title
+            Landmark landm = MockDatabase.getInstance().getLandmarks().get(m);
+            googleMap.addMarker(new MarkerOptions().position(new LatLng(landm.getLatitude(), landm.getLongitude())).title(landm.getName()));
         }
         googleMap.moveCamera(cameraUpdate);
     }
