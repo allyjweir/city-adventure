@@ -12,6 +12,7 @@
     <item name="darkred" type="color">#FFCC0000</item>
     <item name="light_gray" type="color">#FFe0e0e0</item>
     <item name="transparent_light_gray" type="color">#99a0a0a0</item>
+    <item name="gray" type="color">#FFa0a0a0</item>
     <!--City theme-->
     <item name="city_green" type="color">#FF34FF25</item>
     <item name="city_yellow" type="color">#FFE8C52E</item>

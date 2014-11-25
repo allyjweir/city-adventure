@@ -7,27 +7,30 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.vlad.cityadventure.R;
+import com.vlad.cityadventure.utils.MockDatabase;
+
+import java.util.ArrayList;
 
 /**
  * Created by Vladislavs on 06/11/2014.
  */
 public class ObjectTaskAdapter extends BaseAdapter {
-    private String[] tasks;
+    private ArrayList<String> tasks;
     private LayoutInflater inflater;
 
-    public ObjectTaskAdapter(String[] tasks) {
+    public ObjectTaskAdapter(ArrayList<String> tasks) {
         this.tasks = tasks;
 
     }
 
     @Override
     public int getCount() {
-        return tasks.length;
+        return tasks.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return tasks[position];
+        return tasks.get(position);
     }
 
     @Override
@@ -41,7 +44,7 @@ public class ObjectTaskAdapter extends BaseAdapter {
             inflater = (LayoutInflater.from(parent.getContext()));
 
             convertView = inflater.inflate(R.layout.row_task, parent, false);
-            ((TextView) convertView.findViewById(R.id.task_text)).setText(tasks[position]);
+            ((TextView) convertView.findViewById(R.id.task_text)).setText(MockDatabase.getInstance().getTasks().get(tasks.get(position)).getDescription());
             return convertView;
 
     }

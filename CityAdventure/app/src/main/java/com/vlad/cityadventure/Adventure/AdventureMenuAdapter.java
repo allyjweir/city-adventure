@@ -44,8 +44,8 @@ public class AdventureMenuAdapter extends BaseAdapter {
             inflater = (LayoutInflater.from(parent.getContext()));
         if (position == 0) {
             convertView = inflater.inflate(R.layout.adventure_menu_top, parent, false);
-            ((TextView) convertView.findViewById(R.id.adventure_user_name)).setText(UserManager.getInstance().getFirstName()+
-            " " + UserManager.getInstance().getLastName());
+            ((TextView) convertView.findViewById(R.id.adventure_user_name)).setText(UserManager.getInstance().getUser().getFirstName()+
+            " " + UserManager.getInstance().getUser().getLastName());
             return convertView;
         } else {
             convertView = inflater.inflate(R.layout.row_adventure_option, parent, false);

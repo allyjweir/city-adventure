@@ -23,7 +23,7 @@ public class Utils {
                     case 1:
                         //todo fetch adventure data and launch adventure activity
                         Intent intent = new Intent(activity, AdventureActivity.class);
-                        intent.putExtra(DashboardAdventureFragment.ID, UserManager.getInstance().getCurrentAdventure());
+                        intent.putExtra(DashboardAdventureFragment.ID, UserManager.getInstance().getUser().getCurrentAdventure());
                         activity.startActivity(intent);
                         break;
                     case 2:

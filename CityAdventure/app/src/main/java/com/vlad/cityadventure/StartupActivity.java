@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vlad.cityadventure.dashboard.DashboardActivity;
+import com.vlad.cityadventure.utils.MockDatabase;
 import com.vlad.cityadventure.utils.UserManager;
 
 /**
@@ -53,9 +54,8 @@ public class StartupActivity extends Activity {
         //should contact server and verify and then fetch data, we just mock it here
         if (username.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please enter your username and password!", Toast.LENGTH_SHORT).show();
-        } else if (username.equals("vlad") || password.equals("password")) {//todo should be better logic like a database stored on device
-            UserManager.getInstance().setFirstName("Vlad");
-            UserManager.getInstance().setLastName("Z");
+        } else if (MockDatabase.getInstance().getUsers().containsKey(username)&&MockDatabase.getInstance().getUsers().get(username).getPassword().equals(password)) {
+            UserManager.getInstance().setUser(MockDatabase.getInstance().getUsers().get(username));
             startActivity(new Intent(StartupActivity.this, DashboardActivity.class));
         } else {
             Toast.makeText(this, "Incorrect password. Please try again!", Toast.LENGTH_SHORT).show();

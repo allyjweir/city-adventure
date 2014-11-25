@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -20,9 +21,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.vlad.cityadventure.R;
+import com.vlad.cityadventure.adventure.AdventureActivity;
 import com.vlad.cityadventure.adventure.AdventureMenuAdapter;
+import com.vlad.cityadventure.classes.Landmark;
 import com.vlad.cityadventure.dashboard.DashboardAdventureFragment;
 import com.vlad.cityadventure.dashboard.DashboardRecommendFragment;
+import com.vlad.cityadventure.utils.MockDatabase;
+import com.vlad.cityadventure.utils.UserManager;
 import com.vlad.cityadventure.utils.Utils;
 
 public class ObjectActivity extends FragmentActivity implements ObjectAvhievementFragment.OnObjectFragmentInteractionListener {
@@ -30,18 +35,20 @@ public class ObjectActivity extends FragmentActivity implements ObjectAvhievemen
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private ListView mDrawerList;
-    private String title;//todo should contain a reference to the actual object, such as a city or landmark or user
+    private Landmark landmark;//todo should contain a reference to the actual object, such as a city or landmark or user
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_object);
-        title = getIntent().getStringExtra("TITLE");
-        ((TextView) findViewById(R.id.object_title)).setText(title);
+        String id = getIntent().getStringExtra("ID");
+        landmark = MockDatabase.getInstance().getLandmarks().get(id);
+        ((TextView) findViewById(R.id.object_title)).setText(landmark.getName());
+
         if (savedInstanceState == null) {
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.add(R.id.object_achievement_container, ObjectAvhievementFragment.newInstance("vlad"));
-            transaction.add(R.id.object_task_container, ObjectTaskFragment.newInstance("vlad"));
+            transaction.add(R.id.object_achievement_container, ObjectAvhievementFragment.newInstance(id));
+            transaction.add(R.id.object_task_container, ObjectTaskFragment.newInstance(id));
             transaction.commit();
         }
 

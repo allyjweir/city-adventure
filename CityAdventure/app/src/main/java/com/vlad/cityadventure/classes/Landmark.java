@@ -14,14 +14,18 @@ public class Landmark {
     public String type_of_venue;
     public float latitude;
     public float longitude;
-    public City city;
-    public ArrayList<Task> tasks;
+    public String city;
+    public ArrayList<String> tasks;
+    public ArrayList<String> associatedAchievements;
     public ArrayList<Question> questions;
     public int visitor_count;
+    public int icon;
 
-    public Landmark(String name, String description, String type_of_venue, float latitude,
-                    float longitude, City city, ArrayList<Task> tasks,
+    public Landmark(ArrayList<String> achievements, int icon, String name, String description, String type_of_venue, float latitude,
+                    float longitude, String city, ArrayList<String> tasks,
                     ArrayList<Question> questions, int visitor_count) {
+        this.associatedAchievements = achievements;
+        this.icon = icon;
         this.name = name;
         this.description = description;
         this.type_of_venue = type_of_venue;
@@ -33,11 +37,21 @@ public class Landmark {
         this.visitor_count = visitor_count;
     }
 
+    public ArrayList<String> getAssociatedAchievements() {
+        return associatedAchievements;
+    }
 
-    /**
-     * More code goes here?
-     */
+    public void setAssociatedAchievements(ArrayList<String> associatedAchievements) {
+        this.associatedAchievements = associatedAchievements;
+    }
 
+    public int getIcon() {
+        return icon;
+    }
+
+    public void setIcon(int icon) {
+        this.icon = icon;
+    }
 
     public String getName() {
         return name;
@@ -79,19 +93,19 @@ public class Landmark {
         this.longitude = longitude;
     }
 
-    public City getCity() {
+    public String getCity() {
         return city;
     }
 
-    public void setCity(City city) {
+    public void setCity(String city) {
         this.city = city;
     }
 
-    public ArrayList<Task> getTasks() {
+    public ArrayList<String> getTasks() {
         return tasks;
     }
 
-    public void setTasks(ArrayList<Task> tasks) {
+    public void setTasks(ArrayList<String> tasks) {
         this.tasks = tasks;
     }
 
