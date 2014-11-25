@@ -10,15 +10,24 @@ public class Achievement {
     public String name;
     public String description;
     public ArrayList<String> tasks;
-    public int points;  //point value of completing the achievement
-    // How do we attach an image to this class?
+    public int points;
+    public int icon;
 
 
-    public Achievement(String name, String description, ArrayList<String> tasks, int points) {
+    public Achievement(int icon, String name, String description, ArrayList<String> tasks, int points) {
+        this.icon = icon;
         this.name = name;
         this.description = description;
         this.tasks = tasks;
         this.points = points;
+    }
+
+    public int getIcon() {
+        return icon;
+    }
+
+    public void setIcon(int icon) {
+        this.icon = icon;
     }
 
     public String getName() {

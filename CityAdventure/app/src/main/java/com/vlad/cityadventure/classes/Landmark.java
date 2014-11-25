@@ -16,12 +16,16 @@ public class Landmark {
     public float longitude;
     public String city;
     public ArrayList<String> tasks;
+    public ArrayList<String> associatedAchievements;
     public ArrayList<Question> questions;
     public int visitor_count;
+    public int icon;
 
-    public Landmark(String name, String description, String type_of_venue, float latitude,
+    public Landmark(ArrayList<String> achievements, int icon, String name, String description, String type_of_venue, float latitude,
                     float longitude, String city, ArrayList<String> tasks,
                     ArrayList<Question> questions, int visitor_count) {
+        this.associatedAchievements = achievements;
+        this.icon = icon;
         this.name = name;
         this.description = description;
         this.type_of_venue = type_of_venue;
@@ -33,11 +37,21 @@ public class Landmark {
         this.visitor_count = visitor_count;
     }
 
+    public ArrayList<String> getAssociatedAchievements() {
+        return associatedAchievements;
+    }
 
-    /**
-     * More code goes here?
-     */
+    public void setAssociatedAchievements(ArrayList<String> associatedAchievements) {
+        this.associatedAchievements = associatedAchievements;
+    }
 
+    public int getIcon() {
+        return icon;
+    }
+
+    public void setIcon(int icon) {
+        this.icon = icon;
+    }
 
     public String getName() {
         return name;

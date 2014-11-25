@@ -11,11 +11,29 @@ public class Task {
     public enum TaskType {QUESTION, PHOTO}
 
     private String landmark;
+    private String description;
     protected TaskType type;
 
-    public Task(TaskType type, String landmark) {
+    public Task(String description, TaskType type, String landmark) {
         this.type = type;
         this.landmark = landmark;
+        this.description = description;
+    }
+
+    public String getLandmark() {
+        return landmark;
+    }
+
+    public void setLandmark(String landmark) {
+        this.landmark = landmark;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public TaskType getType() {
@@ -31,8 +49,8 @@ public class Task {
         private int answer;
         private String question;
 
-        public QuestionTask(TaskType type, String landmark, String[] options, int answer, String question) {
-            super(type, landmark);
+        public QuestionTask(String description, TaskType type, String landmark, String[] options, int answer, String question) {
+            super(description, type, landmark);
             this.options = options;
             this.answer = answer;
             this.question = question;

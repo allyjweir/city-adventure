@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/circle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:padding="3dp"
             android:background="@drawable/red_circle"
             android:src="@android:drawable/ic_menu_add"
@@ -56,9 +56,13 @@
         </LinearLayout>
 
     <ImageView
+        android:id="@+id/directions"
+        android:padding="2dp"
+        android:background="@drawable/selector_gray"
+        android:clickable="true"
         android:layout_weight="1"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_mapmode"/>
+        android:layout_height="30dp"
+        android:src="@drawable/directions"/>
 
 </LinearLayout>

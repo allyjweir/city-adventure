@@ -87,7 +87,7 @@ public class AdventureActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //todo meaningful logic
                 Intent intent = new Intent(AdventureActivity.this, ObjectActivity.class);
-                intent.putExtra("TITLE", ((AdventureStepsAdapter) parent.getAdapter()).getItem(position).getName());
+                intent.putExtra("ID", ((AdventureStepsAdapter) parent.getAdapter()).getId(position));
                 startActivity(intent);
             }
         });

@@ -51,8 +51,6 @@ public class StartupActivity extends Activity {
     }
 
     private void login(String username, String password) {
-        boolean one = MockDatabase.getInstance().getUsers().containsKey(username);
-        String pwd = MockDatabase.getInstance().getUsers().get(username).getPassword();
         //should contact server and verify and then fetch data, we just mock it here
         if (username.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please enter your username and password!", Toast.LENGTH_SHORT).show();

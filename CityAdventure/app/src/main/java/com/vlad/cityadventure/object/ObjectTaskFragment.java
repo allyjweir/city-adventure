@@ -1,18 +1,26 @@
 package com.vlad.cityadventure.object;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
-import android.graphics.Typeface;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.vlad.cityadventure.R;
+import com.vlad.cityadventure.classes.Question;
+import com.vlad.cityadventure.classes.Task;
 import com.vlad.cityadventure.dashboard.ObjectTaskAdapter;
+import com.vlad.cityadventure.utils.MockDatabase;
 
 /**
  * A simple {@link android.app.Fragment} subclass.
@@ -25,10 +33,11 @@ import com.vlad.cityadventure.dashboard.ObjectTaskAdapter;
 public class ObjectTaskFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    public static final String USER_ID = "param1";
+    public static final String LANMARK_ID = "param1";
 
     // TODO: Rename and change types of parameters
-    private String userId;
+    private String landmarkId;
+    public AlertDialog dialog;
 
     private ObjectAvhievementFragment.OnObjectFragmentInteractionListener mListener;
 
@@ -36,14 +45,14 @@ public class ObjectTaskFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param userId Parameter 1.
+     * @param landmarkId Parameter 1.
      * @return A new instance of fragment DashboardAdventureFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ObjectTaskFragment newInstance(String userId) {
+    public static ObjectTaskFragment newInstance(String landmarkId) {
         ObjectTaskFragment fragment = new ObjectTaskFragment();
         Bundle args = new Bundle();
-        args.putString(USER_ID, userId);
+        args.putString(LANMARK_ID, landmarkId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -56,7 +65,7 @@ public class ObjectTaskFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            userId = getArguments().getString(USER_ID);
+            landmarkId = getArguments().getString(LANMARK_ID);
         }
     }
 
@@ -71,7 +80,7 @@ public class ObjectTaskFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
         // initialise your views
-        populateViews(userId);
+        populateViews(landmarkId);
 
     }
 
@@ -99,12 +108,52 @@ public class ObjectTaskFragment extends Fragment {
         mListener = null;
     }
 
-    private void populateViews(String userId){
+    private void populateViews(String landmarkId){
         //todo get achievements from database
         ListView taskList = (ListView) getView().findViewById(R.id.task_list);
-        taskList.setAdapter(new ObjectTaskAdapter(("1.   Take a picture of the Christ of St. John of the Cross,2.   Complete the Kelvingrove Museum Quiz," +
-                "3.    Visit Glasgow University,4.   Solve the puzzle before the time runs out," +
-                        "5.   Find the hidden QR code inside the Hunterian Art Gallery").split(",")));
+        taskList.setAdapter(new ObjectTaskAdapter(MockDatabase.getInstance().getLandmarks().get(landmarkId).getTasks()));
+        taskList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                doTask((String) parent.getAdapter().getItem(position));
+            }
+        });
     }
 
+    public void doTask(String taskId){
+        Task task = MockDatabase.getInstance().getTasks().get(taskId);
+        if (task.getType() == Task.TaskType.QUESTION) {
+            askQuestion((Task.QuestionTask) task);
+        }
+    }
+
+
+    public void askQuestion(final Task.QuestionTask question) {
+        final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+        alert.setTitle("Title");
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        final View convertView = inflater.inflate(R.layout.task_question, null);
+        ((TextView) convertView.findViewById(R.id.task_question)).setText(question.getQuestion());
+        ListView options = (ListView) convertView.findViewById(R.id.task_question_options);
+        options.setAdapter(new com.vlad.cityadventure.object.ObjectTaskAdapter(question.getOptions()));
+        options.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == question.getAnswer())
+                    Toast.makeText(getActivity(), "correct!", Toast.LENGTH_SHORT).show();
+                else Toast.makeText(getActivity(), "WRONG!", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+        alert.setView(convertView);
+
+        alert.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        dialog = alert.show();
+
+    }
 }

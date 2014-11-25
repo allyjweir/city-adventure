@@ -36,18 +36,21 @@
         android:weightSum="5">
 
         <LinearLayout
+            android:id="@+id/achievement_1_container"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="invisible">
 
             <ImageView
+                android:id="@+id/achievement_1_image"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:src="@android:drawable/star_big_on"/>
 
             <TextView
-                android:id="@+id/achievement_1"
+                android:id="@+id/achievement_1_text"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -56,18 +59,21 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/achievement_2_container"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="invisible">
 
             <ImageView
+                android:id="@+id/achievement_2_image"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:src="@android:drawable/star_big_on"/>
 
             <TextView
-                android:id="@+id/achievement_2"
+                android:id="@+id/achievement_2_text"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -75,18 +81,21 @@
                 android:ellipsize="end"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/achievement_3_container"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="invisible">
 
             <ImageView
+                android:id="@+id/achievement_3_image"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:src="@android:drawable/star_big_on"/>
 
             <TextView
-                android:id="@+id/achievement_3"
+                android:id="@+id/achievement_3_text"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,18 +103,21 @@
                 android:ellipsize="end"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/achievement_4_container"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="invisible">
 
             <ImageView
+                android:id="@+id/achievement_4_image"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:src="@android:drawable/star_big_on"/>
 
             <TextView
-                android:id="@+id/achievement_4"
+                android:id="@+id/achievement_4_text"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -113,18 +125,21 @@
                 android:ellipsize="end"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/achievement_5_container"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="invisible">
 
             <ImageView
+                android:id="@+id/achievement_5_image"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:src="@android:drawable/star_big_on"/>
 
             <TextView
-                android:id="@+id/achievement_5"
+                android:id="@+id/achievement_5_text"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -2,17 +2,18 @@ package com.vlad.cityadventure.object;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.vlad.cityadventure.adventure.AdventureActivity;
 import com.vlad.cityadventure.R;
+import com.vlad.cityadventure.utils.MockDatabase;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link android.app.Fragment} subclass.
@@ -28,7 +29,7 @@ public class ObjectAvhievementFragment extends Fragment {
     public static final String USER_ID = "param1";
 
     // TODO: Rename and change types of parameters
-    private String userId;
+    private String landmarkId;
 
     private OnObjectFragmentInteractionListener mListener;
 
@@ -36,14 +37,14 @@ public class ObjectAvhievementFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param userId Parameter 1.
+     * @param landmarkId Parameter 1.
      * @return A new instance of fragment DashboardAdventureFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ObjectAvhievementFragment newInstance(String userId) {
+    public static ObjectAvhievementFragment newInstance(String landmarkId) {
         ObjectAvhievementFragment fragment = new ObjectAvhievementFragment();
         Bundle args = new Bundle();
-        args.putString(USER_ID, userId);
+        args.putString(USER_ID, landmarkId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -56,7 +57,7 @@ public class ObjectAvhievementFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            userId = getArguments().getString(USER_ID);
+            landmarkId = getArguments().getString(USER_ID);
         }
     }
 
@@ -71,7 +72,7 @@ public class ObjectAvhievementFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
         // initialise your views
-        populateViews(userId);
+        populateViews(landmarkId);
 
     }
 
@@ -114,13 +115,35 @@ public class ObjectAvhievementFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
-    private void populateViews(String userId){
+    private void populateViews(String landmarkId){
         //todo get achievements from database
-        ((TextView) getView().findViewById(R.id.achievement_1)).setText("Glasgow Explorer");
-        ((TextView) getView().findViewById(R.id.achievement_2)).setText("Glasgow Runner");
-        ((TextView) getView().findViewById(R.id.achievement_3)).setText("Teamwork");
-        ((TextView) getView().findViewById(R.id.achievement_4)).setText("City Collector");
-        ((TextView) getView().findViewById(R.id.achievement_5)).setText("All the Parks");
+        ArrayList<String> achievements = MockDatabase.getInstance().getLandmarks().get(landmarkId).getAssociatedAchievements();
+        int numAch = achievements.size();
+        if (numAch > 0){
+            getView().findViewById(R.id.achievement_1_container).setVisibility(View.VISIBLE);
+            ((TextView) getView().findViewById(R.id.achievement_1_text)).setText(MockDatabase.getInstance().getAchievements().get(achievements.get(0)).getName());
+            ((ImageView) getView().findViewById(R.id.achievement_1_image)).setImageResource(MockDatabase.getInstance().getAchievements().get(achievements.get(0)).getIcon());
+        }
+        if (numAch > 1){
+            getView().findViewById(R.id.achievement_2_container).setVisibility(View.VISIBLE);
+            ((TextView) getView().findViewById(R.id.achievement_2_text)).setText(MockDatabase.getInstance().getAchievements().get(achievements.get(1)).getName());
+            ((ImageView) getView().findViewById(R.id.achievement_2_image)).setImageResource(MockDatabase.getInstance().getAchievements().get(achievements.get(1)).getIcon());
+        }
+        if (numAch > 2){
+            getView().findViewById(R.id.achievement_3_container).setVisibility(View.VISIBLE);
+            ((TextView) getView().findViewById(R.id.achievement_3_text)).setText(MockDatabase.getInstance().getAchievements().get(achievements.get(2)).getName());
+            ((ImageView) getView().findViewById(R.id.achievement_3_image)).setImageResource(MockDatabase.getInstance().getAchievements().get(achievements.get(2)).getIcon());
+        }
+        if (numAch > 3){
+            getView().findViewById(R.id.achievement_4_container).setVisibility(View.VISIBLE);
+            ((TextView) getView().findViewById(R.id.achievement_4_text)).setText(MockDatabase.getInstance().getAchievements().get(achievements.get(3)).getName());
+            ((ImageView) getView().findViewById(R.id.achievement_4_image)).setImageResource(MockDatabase.getInstance().getAchievements().get(achievements.get(3)).getIcon());
+        }
+        if (numAch > 4){
+            getView().findViewById(R.id.achievement_5_container).setVisibility(View.VISIBLE);
+            ((TextView) getView().findViewById(R.id.achievement_5_text)).setText(MockDatabase.getInstance().getAchievements().get(achievements.get(4)).getName());
+            ((ImageView) getView().findViewById(R.id.achievement_5_image)).setImageResource(MockDatabase.getInstance().getAchievements().get(achievements.get(4)).getIcon());
+        }
     }
 
 }
