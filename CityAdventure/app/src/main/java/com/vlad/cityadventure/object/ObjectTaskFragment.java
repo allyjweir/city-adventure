@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -111,30 +112,63 @@ public class ObjectTaskFragment extends Fragment {
         mListener = null;
     }
 
-    private void populateViews(String landmarkId) {
+    private void populateViews(final String landmarkId) {
         //todo get achievements from database
         taskList = (ListView) getView().findViewById(R.id.task_list);
-        adapter = new ObjectTaskAdapter(MockDatabase.getInstance().getLandmarks().get(landmarkId).getTasks(), UserManager.getInstance().getuId(), getActivity());
+        adapter = new ObjectTaskAdapter(MockDatabase.getInstance().getLandmarks().get(landmarkId).getTasks(), UserManager.getInstance().getuId(), getActivity(), false);
         taskList.setAdapter(adapter);
         taskList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                doTask((String) parent.getAdapter().getItem(position));
+                doTask((String) parent.getAdapter().getItem(position), adapter);
+            }
+        });
+        getView().findViewById(R.id.see_all_tasks_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                alert.setTitle("Tasks");
+                LayoutInflater inflater = getActivity().getLayoutInflater();
+                final View convertView = inflater.inflate(R.layout.dialog_tasks, null);
+                ListView tasks = (ListView) convertView.findViewById(R.id.tasks_popup_list);
+
+                alert.setView(convertView);
+                final ObjectTaskAdapter adapt = new ObjectTaskAdapter(MockDatabase.getInstance().getLandmarks().get(landmarkId).getTasks(), UserManager.getInstance().getuId(), getActivity(), true);
+                tasks.setAdapter(adapt);
+                tasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        doTask((String) parent.getAdapter().getItem(position), adapt);
+                    }
+                });
+
+                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog = alert.show();
             }
         });
     }
 
-    public void doTask(String taskId) {
+    public void doTask(String taskId, ObjectTaskAdapter adapt) {
         Task task = MockDatabase.getInstance().getTasks().get(taskId);
         if (task.getType() == Task.TaskType.QUESTION) {
-            askQuestion((Task.QuestionTask) task, taskId);
+            askQuestion((Task.QuestionTask) task, taskId, adapt);
+        }
+        else if (task.getType() == Task.TaskType.PHOTO) {
+            UserManager.getInstance().getUser().getCompleteTasks().add(taskId);
+            adapt.notifyDataSetChanged();
+            ((ObjectActivity) getActivity()).dispatchTakePictureIntent();
         }
     }
 
 
-    public void askQuestion(final Task.QuestionTask question, final String taskId) {
+    public void askQuestion(final Task.QuestionTask question, final String taskId, final ObjectTaskAdapter adapt) {
         final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-        alert.setTitle("Title");
+        alert.setTitle("Do you know the answer?");
         LayoutInflater inflater = getActivity().getLayoutInflater();
         final View convertView = inflater.inflate(R.layout.task_question, null);
         ((TextView) convertView.findViewById(R.id.task_question)).setText(question.getQuestion());
@@ -144,10 +178,10 @@ public class ObjectTaskFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == question.getAnswer()) {
-                    Toast.makeText(getActivity(), "correct!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "That's right!", Toast.LENGTH_SHORT).show();
                     UserManager.getInstance().getUser().getCompleteTasks().add(taskId);
-                    adapter.notifyDataSetChanged();
-                } else Toast.makeText(getActivity(), "WRONG!", Toast.LENGTH_SHORT).show();
+                    adapt.notifyDataSetChanged();
+                } else Toast.makeText(getActivity(), "Sorry, but that wasn't the right answer.", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });

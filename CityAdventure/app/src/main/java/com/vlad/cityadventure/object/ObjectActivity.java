@@ -9,6 +9,7 @@ import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.vlad.cityadventure.R;
 import com.vlad.cityadventure.adventure.AdventureActivity;
@@ -35,7 +37,8 @@ public class ObjectActivity extends FragmentActivity implements ObjectAvhievemen
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private ListView mDrawerList;
-    private Landmark landmark;//todo should contain a reference to the actual object, such as a city or landmark or user
+    private Landmark landmark;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,5 +135,24 @@ public class ObjectActivity extends FragmentActivity implements ObjectAvhievemen
 
         ab.setDisplayHomeAsUpEnabled(false);
         ab.setHomeButtonEnabled(true);
+    }
+
+
+
+    public void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+//            Bundle extras = data.getExtras();
+//            Bitmap imageBitmap = (Bitmap) extras.get("data");
+//            mImageView.setImageBitmap(imageBitmap);
+            Toast.makeText(this, "Picture added to your profile. Task complete!", Toast.LENGTH_SHORT).show();
+        }
     }
 }

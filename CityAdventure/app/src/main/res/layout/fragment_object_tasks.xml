@@ -18,6 +18,8 @@
             android:textSize="18sp"/>
 
         <TextView
+            android:id="@+id/see_all_tasks_button"
+            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -25,7 +27,7 @@
             android:textSize="10sp"
             android:layout_margin="5dp"
             android:padding="2sp"
-            android:background="@color/transparent_light_gray"/>
+            android:background="@drawable/selector_gray"/>
 
     </RelativeLayout>
 

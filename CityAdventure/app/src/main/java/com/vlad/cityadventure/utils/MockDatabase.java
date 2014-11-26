@@ -45,7 +45,7 @@ public class MockDatabase {
                 R.drawable.landmark_general, "Kelvingrove Art Gallery and Museum", "The Kelvingrove Art Gallery and Museum is a museum and art gallery in Glasgow, Scotland.",
                 "museum", (float) 55.8686, (float) -4.2905, "UKGLA",
                 new ArrayList<String>(Arrays.asList(("UKGLAKELVINGROVE001,UKGLAKELVINGROVE002,UKGLAKELVINGROVE003,UKGLAKELVINGROVE004," +
-                        "UKGLAKELVINGROVE005,UKGLAKELVINGROVE006,UKGLAKELVINGROVE007,UKGLAKELVINGROVE008,UKGLAKELVINGROVE009,UKGLAKELVINGROVE010").split(","))),
+                        "UKGLAKELVINGROVE005,UKGLAKELVINGROVE006,UKGLAKELVINGROVE007,UKGLAKELVINGROVE008,UKGLAKELVINGROVE009,UKGLAKELVINGROVE010,UKGLAKELVINGROVE011").split(","))),
                 null, 1037594));
         landmarks.put("UKGLAHILLHEADSUB", new Landmark(new ArrayList<String>(Arrays.asList("AAAA001,AAAA002,AAAA003,AAAA004,AAAA005".split(","))),
                 R.drawable.landmark_outdoors, "Hillhead Subway Station", "Hillhead subway station is a station on the Glasgow Subway, serving the Hillhead area of Glasgow, Scotland.",
@@ -133,6 +133,7 @@ public class MockDatabase {
                 2,"How many stops away is Kelvinbridge Station?"));
         tasks.put("UKGLAHILLHEADSUB005", new Task.QuestionTask("Answer question #5", Task.TaskType.QUESTION, "UKGLAHILLHEADSUB", "The Shoogle,The Woogie,The Clickity,The Back and Forth".split(","),
                 0,"What do locals call the shaking of the subway carriages?"));
+        tasks.put("UKGLAKELVINGROVE011", new Task("Take a selfie inside the museum", Task.TaskType.PHOTO, "UKGLAHILLHEADSUB"));
     }
     public static MockDatabase getInstance() {
         if(instance == null) {

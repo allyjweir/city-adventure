@@ -41,7 +41,7 @@
                 android:layout_margin="5dp"
                 android:id="@+id/object_task_container"
                 android:layout_width="match_parent"
-                android:layout_height="150dp" />
+                android:layout_height="160dp" />
 
             <Button
                 android:id="@+id/quiz_button"

@@ -20,8 +20,10 @@ public class ObjectTaskAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private String user;
     private Activity activity;
+    private boolean showAll;
 
-    public ObjectTaskAdapter(ArrayList<String> tasks, String user, Activity activity) {
+    public ObjectTaskAdapter(ArrayList<String> tasks, String user, Activity activity, boolean showAll) {
+        this.showAll = showAll;
         this.user = user;
         this.tasks = tasks;
         this.activity = activity;
@@ -31,6 +33,9 @@ public class ObjectTaskAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         if (tasks == null) return 0;
+        else if (!showAll||tasks.size()<4){
+            return 4;
+        }
         else
             return tasks.size();
     }
@@ -52,6 +57,7 @@ public class ObjectTaskAdapter extends BaseAdapter {
 
         convertView = inflater.inflate(R.layout.row_task, parent, false);
         ((TextView) convertView.findViewById(R.id.task_text)).setText(MockDatabase.getInstance().getTasks().get(tasks.get(position)).getDescription());
+        ((TextView) convertView.findViewById(R.id.task_text_number)).setText(position+1+")");
         if (MockDatabase.getInstance().getUsers().get(user).getCompleteTasks().contains(tasks.get(position))){
             ((TextView) convertView.findViewById(R.id.task_text)).setTextColor(activity.getResources().getColor(R.color.green));
         }
