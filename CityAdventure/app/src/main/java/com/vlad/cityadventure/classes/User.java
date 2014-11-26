@@ -30,8 +30,10 @@ public class User {
     private ArrayList<String> landmarks;
     private ArrayList<String> cities;
     private ArrayList<String> adventures;
+    private ArrayList<String> completeTasks;
 
-    public User(String firstName, String lastName, String email, String currentAdventure, String password, int adventurePoints, ArrayList<String> landmarks, ArrayList<String> cities, ArrayList<String> adventures) {
+    public User(ArrayList<String> tasks, String firstName, String lastName, String email, String currentAdventure, String password, int adventurePoints, ArrayList<String> landmarks, ArrayList<String> cities, ArrayList<String> adventures) {
+        this.completeTasks = tasks;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -45,6 +47,14 @@ public class User {
 
     public String getFirstName() {
         return firstName;
+    }
+
+    public ArrayList<String> getCompleteTasks() {
+        return completeTasks;
+    }
+
+    public void setCompleteTasks(ArrayList<String> completeTasks) {
+        this.completeTasks = completeTasks;
     }
 
     public void setFirstName(String firstName) {

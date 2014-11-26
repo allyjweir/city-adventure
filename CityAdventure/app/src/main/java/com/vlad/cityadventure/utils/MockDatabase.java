@@ -30,11 +30,13 @@ public class MockDatabase {
     private HashMap<String, Task> tasks = new HashMap<String, Task>();
 
     protected MockDatabase() {
-        users.put("vladz", new User("Vlad", "Zaharovs", "vlad@cityadventure.com", "UKGLAHA01", "password", 300,
+
+        users.put("vladz", new User(new ArrayList<String>(), "Vlad", "Zaharovs", "vlad@cityadventure.com", "UKGLAHA01", "password", 300,
                 new ArrayList<String>(Arrays.asList("UKGLAKELVINGROVE,UKGLARIVERSIDEMUS,UKGLAHUNTERIAN,UKGLAUNIGLASGOW".split(","))),//landmarks
                 new ArrayList<String>(Arrays.asList("UKGLA,UKEDI".split(","))),//cities
                 new ArrayList<String>(Arrays.asList("UKGLAHA01".split(",")))));//adventures));
-        users.put("allyweir", new User("Ally", "Weir", "ally@cityadventure.com", "UKGLAHA01", "password", 300,
+        users.get("vladz").getCompleteTasks().add("UKGLAKELVINGROVE001");
+        users.put("allyweir", new User(new ArrayList<String>(), "Ally", "Weir", "ally@cityadventure.com", "UKGLAHA01", "password", 300,
                 new ArrayList<String>(Arrays.asList("UKGLAKELVINGROVE,UKGLAHILLHEADSUB,UKGLAUNIGLASGOW".split(","))),//landmarks
                 new ArrayList<String>(Arrays.asList("UKGLA".split(","))),//cities
                 new ArrayList<String>(Arrays.asList("UKGLAHA01".split(",")))));//adventures))

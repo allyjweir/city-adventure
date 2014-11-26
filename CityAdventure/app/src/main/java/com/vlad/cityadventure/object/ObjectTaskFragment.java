@@ -21,6 +21,7 @@ import com.vlad.cityadventure.classes.Question;
 import com.vlad.cityadventure.classes.Task;
 import com.vlad.cityadventure.dashboard.ObjectTaskAdapter;
 import com.vlad.cityadventure.utils.MockDatabase;
+import com.vlad.cityadventure.utils.UserManager;
 
 /**
  * A simple {@link android.app.Fragment} subclass.
@@ -38,6 +39,8 @@ public class ObjectTaskFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String landmarkId;
     public AlertDialog dialog;
+    private ListView taskList;
+    private ObjectTaskAdapter adapter;
 
     private ObjectAvhievementFragment.OnObjectFragmentInteractionListener mListener;
 
@@ -77,7 +80,7 @@ public class ObjectTaskFragment extends Fragment {
 //        adventure_button
     }
 
-    public void onViewCreated(View view, Bundle savedInstanceState){
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // initialise your views
         populateViews(landmarkId);
@@ -108,10 +111,11 @@ public class ObjectTaskFragment extends Fragment {
         mListener = null;
     }
 
-    private void populateViews(String landmarkId){
+    private void populateViews(String landmarkId) {
         //todo get achievements from database
-        ListView taskList = (ListView) getView().findViewById(R.id.task_list);
-        taskList.setAdapter(new ObjectTaskAdapter(MockDatabase.getInstance().getLandmarks().get(landmarkId).getTasks()));
+        taskList = (ListView) getView().findViewById(R.id.task_list);
+        adapter = new ObjectTaskAdapter(MockDatabase.getInstance().getLandmarks().get(landmarkId).getTasks(), UserManager.getInstance().getuId(), getActivity());
+        taskList.setAdapter(adapter);
         taskList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -120,15 +124,15 @@ public class ObjectTaskFragment extends Fragment {
         });
     }
 
-    public void doTask(String taskId){
+    public void doTask(String taskId) {
         Task task = MockDatabase.getInstance().getTasks().get(taskId);
         if (task.getType() == Task.TaskType.QUESTION) {
-            askQuestion((Task.QuestionTask) task);
+            askQuestion((Task.QuestionTask) task, taskId);
         }
     }
 
 
-    public void askQuestion(final Task.QuestionTask question) {
+    public void askQuestion(final Task.QuestionTask question, final String taskId) {
         final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
         alert.setTitle("Title");
         LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -139,9 +143,11 @@ public class ObjectTaskFragment extends Fragment {
         options.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == question.getAnswer())
+                if (position == question.getAnswer()) {
                     Toast.makeText(getActivity(), "correct!", Toast.LENGTH_SHORT).show();
-                else Toast.makeText(getActivity(), "WRONG!", Toast.LENGTH_SHORT).show();
+                    UserManager.getInstance().getUser().getCompleteTasks().add(taskId);
+                    adapter.notifyDataSetChanged();
+                } else Toast.makeText(getActivity(), "WRONG!", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });

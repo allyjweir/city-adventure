@@ -1,5 +1,6 @@
 package com.vlad.cityadventure.dashboard;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,19 +18,25 @@ import java.util.ArrayList;
 public class ObjectTaskAdapter extends BaseAdapter {
     private ArrayList<String> tasks;
     private LayoutInflater inflater;
+    private String user;
+    private Activity activity;
 
-    public ObjectTaskAdapter(ArrayList<String> tasks) {
+    public ObjectTaskAdapter(ArrayList<String> tasks, String user, Activity activity) {
+        this.user = user;
         this.tasks = tasks;
+        this.activity = activity;
 
     }
 
     @Override
     public int getCount() {
-        return tasks.size();
+        if (tasks == null) return 0;
+        else
+            return tasks.size();
     }
 
     @Override
-    public Object getItem(int position) {
+    public String getItem(int position) {
         return tasks.get(position);
     }
 
@@ -43,9 +50,12 @@ public class ObjectTaskAdapter extends BaseAdapter {
         if (inflater == null)
             inflater = (LayoutInflater.from(parent.getContext()));
 
-            convertView = inflater.inflate(R.layout.row_task, parent, false);
-            ((TextView) convertView.findViewById(R.id.task_text)).setText(MockDatabase.getInstance().getTasks().get(tasks.get(position)).getDescription());
-            return convertView;
+        convertView = inflater.inflate(R.layout.row_task, parent, false);
+        ((TextView) convertView.findViewById(R.id.task_text)).setText(MockDatabase.getInstance().getTasks().get(tasks.get(position)).getDescription());
+        if (MockDatabase.getInstance().getUsers().get(user).getCompleteTasks().contains(tasks.get(position))){
+            ((TextView) convertView.findViewById(R.id.task_text)).setTextColor(activity.getResources().getColor(R.color.green));
+        }
+        return convertView;
 
     }
 }

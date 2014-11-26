@@ -4,6 +4,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:textSize="14sp">
+    android:textSize="14sp"
+    android:textColor="@color/city_orange">
 
 </TextView>

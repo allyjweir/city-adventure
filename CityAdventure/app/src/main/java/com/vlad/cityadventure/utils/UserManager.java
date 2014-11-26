@@ -41,6 +41,7 @@ public class UserManager {
     private static UserManager instance;
 
     private User user;
+    private String uId;
 
     protected UserManager() {
 
@@ -55,6 +56,14 @@ public class UserManager {
 
     public User getUser() {
         return user;
+    }
+
+    public String getuId() {
+        return uId;
+    }
+
+    public void setuId(String uId) {
+        this.uId = uId;
     }
 
     public void setUser(User user) {
