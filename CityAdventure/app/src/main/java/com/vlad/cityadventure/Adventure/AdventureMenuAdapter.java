@@ -19,7 +19,7 @@ public class AdventureMenuAdapter extends BaseAdapter {
     private LayoutInflater inflater;
 
     public AdventureMenuAdapter() {
-        menuTitles = "Current Trail,Adventures,Quizzes,Get Help,Send Feedback".split(",");
+        menuTitles = "Dashboard, Current Trail,Adventures,Quizzes,Get Help,Send Feedback".split(",");
 
     }
 

@@ -32,6 +32,7 @@ import com.vlad.cityadventure.classes.Landmark;
 import com.vlad.cityadventure.dashboard.DashboardAdventureFragment;
 import com.vlad.cityadventure.object.ObjectActivity;
 import com.vlad.cityadventure.utils.MockDatabase;
+import com.vlad.cityadventure.utils.UserManager;
 import com.vlad.cityadventure.utils.Utils;
 
 import java.util.LinkedList;
@@ -134,6 +135,11 @@ public class AdventureActivity extends Activity {
         TextView titleTV = (TextView) v.findViewById(R.id.title);
         Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/Pacifico.ttf");
         titleTV.setTypeface(tf);
+        if (!UserManager.getInstance().getUser().getAdventures().contains(getIntent().getStringExtra(DashboardAdventureFragment.ID))){
+            TextView join = (TextView) v.findViewById(R.id.join_adventure_button);
+            join.setVisibility(View.VISIBLE);
+            join.setTypeface(tf);
+        }
 
         ab.setCustomView(v);
 

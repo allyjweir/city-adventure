@@ -15,9 +15,24 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/object_background"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@drawable/glasgow_background">
+
+                <ImageView
+                    android:layout_margin="5dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/achievement_chat"/>
+
+                <ImageView
+                    android:id="@+id/foursquare_button"
+                    android:layout_margin="5dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/foursquare"/>
 
                 <TextView
                     android:id="@+id/object_title"

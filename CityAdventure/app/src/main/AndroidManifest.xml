@@ -6,33 +6,30 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <uses-feature
         android:glEsVersion="0x00020000"
-        android:required="true"/>
-
-    <uses-feature android:name="android.hardware.camera"
         android:required="true" />
-
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/CityAdventureTheme" >
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"
             android:name="com.vlad.cityadventure.StartupActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,23 +37,29 @@
             </intent-filter>
         </activity>
         <activity
-            android:screenOrientation="portrait"
             android:name="com.vlad.cityadventure.adventure.AdventureActivity"
-            android:label="@string/title_activity_adventure" >
+            android:label="@string/title_activity_adventure"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:screenOrientation="portrait"
             android:name="com.vlad.cityadventure.dashboard.DashboardActivity"
-            android:label="@string/title_activity_dashboard" >
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name=".object.ObjectActivity"
-            android:label="@string/title_activity_object" >
+            android:name="com.vlad.cityadventure.object.ObjectActivity"
+            android:label="@string/title_activity_object"
+            android:screenOrientation="portrait" >
         </activity>
+
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyB3bm84-ZCz-9h2oSHAkh8g1DexbpxEKDk" />
+
+        <activity
+            android:name="com.vlad.cityadventure.adventureselection.AdventureSelectionActivity"
+            android:label="@string/title_activity_adventure_selection" >
+        </activity>
     </application>
 
 </manifest>

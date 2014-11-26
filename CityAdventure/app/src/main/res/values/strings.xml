@@ -10,5 +10,6 @@
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_object">ObjectActivity</string>
+    <string name="title_activity_adventure_selection">AdventureSelectionActivity</string>
 
 </resources>

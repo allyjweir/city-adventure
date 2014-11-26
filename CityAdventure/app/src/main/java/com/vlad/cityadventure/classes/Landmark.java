@@ -19,11 +19,15 @@ public class Landmark {
     public ArrayList<String> associatedAchievements;
     public ArrayList<Question> questions;
     public int visitor_count;
+    public int background;
     public int icon;
+    public String url;
 
-    public Landmark(ArrayList<String> achievements, int icon, String name, String description, String type_of_venue, float latitude,
+    public Landmark(String url, int background, ArrayList<String> achievements, int icon, String name, String description, String type_of_venue, float latitude,
                     float longitude, String city, ArrayList<String> tasks,
                     ArrayList<Question> questions, int visitor_count) {
+        this.url = url;
+        this.background = background;
         this.associatedAchievements = achievements;
         this.icon = icon;
         this.name = name;
@@ -35,6 +39,22 @@ public class Landmark {
         this.tasks = tasks;
         this.questions = questions;
         this.visitor_count = visitor_count;
+    }
+
+    public int getBackground() {
+        return background;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setBackground(int background) {
+        this.background = background;
     }
 
     public ArrayList<String> getAssociatedAchievements() {

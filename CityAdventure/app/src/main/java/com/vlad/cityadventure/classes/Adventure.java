@@ -10,12 +10,22 @@ public class Adventure {
     public String description;
     public String[] route;
     public String[] tasks;
+    public int icon;
 
-    public Adventure(String title, String description, String[] route, String[] tasks) {
+    public Adventure(int icon, String title, String description, String[] route, String[] tasks) {
+        this.icon = icon;
         this.title = title;
         this.description = description;
         this.route = route;
         this.tasks = tasks;
+    }
+
+    public int getIcon() {
+        return icon;
+    }
+
+    public void setIcon(int icon) {
+        this.icon = icon;
     }
 
     public String getTitle() {

@@ -41,28 +41,33 @@ public class MockDatabase {
                 new ArrayList<String>(Arrays.asList("UKGLA".split(","))),//cities
                 new ArrayList<String>(Arrays.asList("UKGLAHA01".split(",")))));//adventures))
 
-        landmarks.put("UKGLAKELVINGROVE", new Landmark(new ArrayList<String>(Arrays.asList("AAAA001,AAAA002,AAAA003,AAAA004,AAAA005".split(","))),
+        landmarks.put("UKGLAKELVINGROVE", new Landmark("https://foursquare.com/v/kelvingrove-art-gallery-and-museum/4ba647c4f964a520f04139e3",
+                R.drawable.kelvingrove, new ArrayList<String>(Arrays.asList("AAAA001,AAAA002,AAAA003,AAAA004,AAAA005".split(","))),
                 R.drawable.landmark_general, "Kelvingrove Art Gallery and Museum", "The Kelvingrove Art Gallery and Museum is a museum and art gallery in Glasgow, Scotland.",
                 "museum", (float) 55.8686, (float) -4.2905, "UKGLA",
                 new ArrayList<String>(Arrays.asList(("UKGLAKELVINGROVE001,UKGLAKELVINGROVE002,UKGLAKELVINGROVE003,UKGLAKELVINGROVE004," +
                         "UKGLAKELVINGROVE005,UKGLAKELVINGROVE006,UKGLAKELVINGROVE007,UKGLAKELVINGROVE008,UKGLAKELVINGROVE009,UKGLAKELVINGROVE010,UKGLAKELVINGROVE011").split(","))),
                 null, 1037594));
-        landmarks.put("UKGLAHILLHEADSUB", new Landmark(new ArrayList<String>(Arrays.asList("AAAA001,AAAA002,AAAA003,AAAA004,AAAA005".split(","))),
+        landmarks.put("UKGLAHILLHEADSUB", new Landmark("https://foursquare.com/v/hillhead-subway-station/4b45c63ff964a520271026e3",
+                R.drawable.hillhead, new ArrayList<String>(Arrays.asList("AAAA001,AAAA002,AAAA003,AAAA004,AAAA005".split(","))),
                 R.drawable.landmark_outdoors, "Hillhead Subway Station", "Hillhead subway station is a station on the Glasgow Subway, serving the Hillhead area of Glasgow, Scotland.",
                 "transport", (float) 55.875833, (float) -4.292222, "UKGLA",
                 new ArrayList<String>(Arrays.asList(("UKGLAHILLHEADSUB001,UKGLAHILLHEADSUB002,UKGLAHILLHEADSUB003,UKGLAHILLHEADSUB004" +
                         ",UKGLAHILLHEADSUB005").split(","))), null, 27997));
-        landmarks.put("UKGLAHUNTERIAN", new Landmark(new ArrayList<String>(Arrays.asList("AAAA001,AAAA002,AAAA003,AAAA004,AAAA005".split(","))),
+        landmarks.put("UKGLAHUNTERIAN", new Landmark("https://foursquare.com/v/hunterian-museum/4ac518cff964a52067a620e3",
+                R.drawable.glasgow_background, new ArrayList<String>(Arrays.asList("AAAA001,AAAA002,AAAA003,AAAA004,AAAA005".split(","))),
                 R.drawable.landmark_outdoors, "Hunterian Museum and Art Gallery",
                 "The University of Glasgow's Hunterian is the oldest museum in Scotland. It covers The Hunterian Museum, The Hunterian Art Gallery, The Mackintosh House, " +
                         "The Zoology Museum and The Anatomy Museum, all located in various buildings on the main campus of the University in the west end of Glasgow.",
                 "museum", (float) 55.871944, (float) -4.288611, "UKGLA", null, null, 327157));
-        landmarks.put("UKGLARIVERSIDEMUS", new Landmark(new ArrayList<String>(Arrays.asList("AAAA001,AAAA002,AAAA003,AAAA004,AAAA005".split(","))),
+        landmarks.put("UKGLARIVERSIDEMUS", new Landmark("https://foursquare.com/v/riverside-museum/4c8a3ba4a92fa093be438fbf",
+                R.drawable.glasgow_background, new ArrayList<String>(Arrays.asList("AAAA001,AAAA002,AAAA003,AAAA004,AAAA005".split(","))),
                 R.drawable.landmark_general, "Riverside Museum",
                 "The Riverside Museum is a new development for the Glasgow Museum of Transport, completed on 20 June 2011, at Pointhouse Quay in the Glasgow " +
                         "Harbour regeneration district of Glasgow, Scotland.",
                 "museum", (float) 55.8651, (float) -4.30638, "UKGLA", null, null, 740276));
-        landmarks.put("UKGLAUNIGLASGOW", new Landmark(new ArrayList<String>(Arrays.asList("AAAA001,AAAA002,AAAA003,AAAA004,AAAA005".split(","))),
+        landmarks.put("UKGLAUNIGLASGOW", new Landmark("https://foursquare.com/v/university-of-glasgow/4b546421f964a52097b927e3",
+                R.drawable.glasgow_uni, new ArrayList<String>(Arrays.asList("AAAA001,AAAA002,AAAA003,AAAA004,AAAA005".split(","))),
                 R.drawable.landmark_outdoors, "University of Glasgow",
                 "The University of Glasgow is the fourth-oldest university in the English-speaking world and one of Scotland's four ancient universities.",
                 "education", (float) 55.871944, (float) -4.2875, "UKGLA", null, null, 947541));
@@ -70,7 +75,8 @@ public class MockDatabase {
 
 
 
-        cities.put("UKGLA", new City(new ArrayList<String>(Arrays.asList("AAAA001,AAAA002,AAAA003,AAAA004,AAAA005".split(","))),
+        cities.put("UKGLA", new City("https://foursquare.com/v/glasgow/4bf65e964d5f20a1ce2299fe",
+                R.drawable.glasgow_uni, new ArrayList<String>(Arrays.asList("AAAA001,AAAA002,AAAA003,AAAA004,AAAA005".split(","))),
                 R.drawable.landmark_outdoors, "Glasgow", "Glasgow is the largest city in Scotland, and the third largest in the United Kingdom." +
                 " At the 2011 census, it had a population density of 8,790 per square mile (3,390/km2), " +
                 "the highest of any Scottish city. It is situated on the River Clyde in the country's West Central Lowlands. Inhabitants of the city are referred to as Glaswegians.",
@@ -80,7 +86,8 @@ public class MockDatabase {
                 2994627, "UK",
                 new ArrayList<String>(Arrays.asList("UKGLAKELVINGROVE,UKGLARIVERSIDEMUS,UKGLAHUNTERIAN,UKGLAUNIGLASGOW,UKGLAHILLHEADSUB".split(","))),
                 new ArrayList<String>(Arrays.asList("UKGLAHA01".split(",")))));
-        cities.put("UKEDI", new City(new ArrayList<String>(Arrays.asList("AAAA001,AAAA002,AAAA003,AAAA004,AAAA005".split(","))),
+        cities.put("UKEDI", new City("https://foursquare.com/v/glasgow/4bf65e964d5f20a1ce2299fe",
+                R.drawable.glasgow_background, new ArrayList<String>(Arrays.asList("AAAA001,AAAA002,AAAA003,AAAA004,AAAA005".split(","))),
                 R.drawable.landmark_outdoors,"Edinburgh", "Edinburgh is the capital city of Scotland, situated in Lothian on the southern shore of the Firth of Forth. It is the second most populous city" +
                 " in Scotland and the seventh most populous in the United Kingdom. The population in 2013 was 487,500. Edinburgh lies at the heart of a Larger urban zone with" +
                 " a population of 778,000.",
@@ -100,8 +107,24 @@ public class MockDatabase {
 
 
 
-        adventures.put("UKGLAHA01", new Adventure("Glasgow Historic", "A little adventure example", "UKGLAKELVINGROVE,UKGLARIVERSIDEMUS,UKGLAHUNTERIAN,UKGLAUNIGLASGOW".split(","),
+        adventures.put("UKGLAHA01", new Adventure(R.drawable.landmark_outdoors,
+                "Glasgow Historic", "A little adventure example", "UKGLAKELVINGROVE,UKGLARIVERSIDEMUS,UKGLAHUNTERIAN,UKGLAUNIGLASGOW,UKGLAHILLHEADSUB".split(","),
         null));
+        adventures.put("UKGLAHA02", new Adventure(R.drawable.landmark_general,
+                "Glasgow University", "The Glasgow University adventure", "UKGLAKELVINGROVE,UKGLAUNIGLASGOW".split(","),
+                null));
+        adventures.put("UKGLAHA03", new Adventure(R.drawable.landmark_general,
+                "Yet another adventure", "If you are in Glasgow, you have to try this", "UKGLAKELVINGROVE,UKGLAUNIGLASGOW".split(","),
+                null));
+        adventures.put("UKGLAHA04", new Adventure(R.drawable.landmark_cafe,
+                "City sights", "For those who don't have much time", "UKGLAKELVINGROVE,UKGLAUNIGLASGOW".split(","),
+                null));
+        adventures.put("UKGLAHA05", new Adventure(R.drawable.landmark_bar,
+                "Pub Crawl", "I suppose this is as good an adventure as any", "UKGLAKELVINGROVE,UKGLAUNIGLASGOW".split(","),
+                null));
+        adventures.put("UKGLAHA06", new Adventure(R.drawable.landmark_outdoors,
+                "The Ultimate Glasgow Experience", "For those who want to see ande xperience everythin Glasgow has to offer", "UKGLAKELVINGROVE,UKGLARIVERSIDEMUS,UKGLAHUNTERIAN,UKGLAUNIGLASGOW,UKGLAHILLHEADSUB".split(","),
+                null));
 
         tasks.put("UKGLAKELVINGROVE001", new Task.QuestionTask("Answer question #1", Task.TaskType.QUESTION, "UKGLAKELVINGROVE", "Sir Roger,Sir David,Sir Remmy,Sir Ballantyne".split(","),
                 0,"What is the name of the large elephant housed here?"));

@@ -12,9 +12,9 @@ public class City extends Landmark {
     private ArrayList<String> landmarks;
     private ArrayList<String> adventures;
 
-    public City(ArrayList<String> achievements, int icon, String name, String description, String type_of_venue, float latitude, float longitude, String city, ArrayList<String> tasks,
+    public City(String url, int background, ArrayList<String> achievements, int icon, String name, String description, String type_of_venue, float latitude, float longitude, String city, ArrayList<String> tasks,
                 ArrayList<Question> questions, int visitor_count, String country, ArrayList<String> landmarks, ArrayList<String> adventures) {
-        super(achievements, icon, name, description, type_of_venue, latitude, longitude, city, tasks, questions, visitor_count);
+        super(url, background, achievements, icon, name, description, type_of_venue, latitude, longitude, city, tasks, questions, visitor_count);
         this.country = country;
         this.landmarks = landmarks;
         this.adventures = adventures;

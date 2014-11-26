@@ -1,7 +1,7 @@
-package com.vlad.cityadventure.object;
+package com.vlad.cityadventure.adventureselection;
 
 import android.app.ActionBar;
-import android.app.Fragment;
+import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
@@ -11,13 +11,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,35 +26,21 @@ import com.vlad.cityadventure.adventure.AdventureActivity;
 import com.vlad.cityadventure.adventure.AdventureMenuAdapter;
 import com.vlad.cityadventure.classes.Landmark;
 import com.vlad.cityadventure.dashboard.DashboardAdventureFragment;
-import com.vlad.cityadventure.dashboard.DashboardRecommendFragment;
+import com.vlad.cityadventure.object.ObjectAvhievementFragment;
+import com.vlad.cityadventure.object.ObjectTaskFragment;
 import com.vlad.cityadventure.utils.MockDatabase;
-import com.vlad.cityadventure.utils.UserManager;
 import com.vlad.cityadventure.utils.Utils;
 
-public class ObjectActivity extends FragmentActivity implements ObjectAvhievementFragment.OnObjectFragmentInteractionListener {
+public class AdventureSelectionActivity extends Activity {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private ListView mDrawerList;
-    private Landmark landmark;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_object);
-        String id = getIntent().getStringExtra("ID");
-        landmark = MockDatabase.getInstance().getLandmarks().get(id);
-        ((TextView) findViewById(R.id.object_title)).setText(landmark.getName());
-        findViewById(R.id.object_background).setBackground(getResources().getDrawable(landmark.getBackground()));
-
-        if (savedInstanceState == null) {
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.add(R.id.object_achievement_container, ObjectAvhievementFragment.newInstance(id));
-            transaction.add(R.id.object_task_container, ObjectTaskFragment.newInstance(id));
-            transaction.commit();
-        }
-
+        setContentView(R.layout.activity_adventure_selection);
         setupActionBar();
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.object_drawer_layout);
@@ -86,19 +71,18 @@ public class ObjectActivity extends FragmentActivity implements ObjectAvhievemen
         // Set the list's click listener
         Utils.setMenuListener(mDrawerList, this);
 
-        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/Pacifico.ttf");//gets the font ttf file from assets
-        TextView title = (TextView) findViewById(R.id.quiz_button);
-        title.setTypeface(tf);//sets the font for these views
-        findViewById(R.id.foursquare_button).setOnClickListener(new View.OnClickListener() {
+        ListView lv = (ListView) findViewById(R.id.adventure_list);
+        lv.setAdapter(new AdventureAdapter(this));
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                //todo YES
-                String url = landmark.getUrl();
-                Intent help = new Intent(Intent.ACTION_VIEW);
-                help.setData(Uri.parse(url));
-                startActivity(help);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //todo fetch adventure data and launch adventure activity
+                Intent intent = new Intent(AdventureSelectionActivity.this, AdventureActivity.class);
+                intent.putExtra(DashboardAdventureFragment.ID, ((AdventureAdapter) parent.getAdapter()).getId(position));
+                startActivity(intent);
             }
         });
+
     }
 
     @Override
@@ -117,11 +101,6 @@ public class ObjectActivity extends FragmentActivity implements ObjectAvhievemen
         }
         // Handle your other action bar items...
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-        //todo
     }
 
 
@@ -146,24 +125,5 @@ public class ObjectActivity extends FragmentActivity implements ObjectAvhievemen
 
         ab.setDisplayHomeAsUpEnabled(false);
         ab.setHomeButtonEnabled(true);
-    }
-
-
-
-    public void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-//            Bundle extras = data.getExtras();
-//            Bitmap imageBitmap = (Bitmap) extras.get("data");
-//            mImageView.setImageBitmap(imageBitmap);
-            Toast.makeText(this, "Picture added to your profile. Task complete!", Toast.LENGTH_SHORT).show();
-        }
     }
 }
