@@ -1,6 +1,7 @@
 package com.vlad.cityadventure.dashboard;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -79,6 +80,21 @@ public class DashboardRecommendFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String recommendation = (String) parent.getAdapter().getItem(position);
                 //todo do something with the string and launch recommendations activity
+                //https://foursquare.com/explore?mode=url&near=Glasgow&q=Food
+                String url2 = "https://foursquare.com/explore?mode=url&near=Glasgow&q={recommend}"
+                        .replace("{recommend}", recommendation);
+                Intent help2 = new Intent(Intent.ACTION_VIEW);
+                help2.setData(Uri.parse(url2));
+                getActivity().startActivity(help2);
+            }
+        });
+        getView().findViewById(R.id.recommend_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url2 = "https://foursquare.com/explore?mode=url&near=Glasgow&q";
+                Intent help2 = new Intent(Intent.ACTION_VIEW);
+                help2.setData(Uri.parse(url2));
+                getActivity().startActivity(help2);
             }
         });
     }
